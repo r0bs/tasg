@@ -17,4 +17,4 @@ yarn-debug.log*
 yarn-error.log*
 
 # credentials
-/gapi/credentials.js
+/src/gapi/credentials.js
