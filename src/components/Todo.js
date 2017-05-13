@@ -1,10 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const Todo = ({ onClick, status, title }) => (
+const Todo = ({ onClick, status, title, syncInProgress }) => (
   <li
     style={{
-      textDecoration: status !== "needsAction" ? 'line-through' : 'none'
+      textDecoration: status !== "needsAction" ? 'line-through' : 'none',
+      backgroundColor: syncInProgress ? "lightblue" : "transparent"
     }}
   >
     {title}

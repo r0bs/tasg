@@ -1,13 +1,23 @@
-import {ADD_TODO, TOGGLE_TODO, REQUEST_TASKS, RECEIVE_TASKS } from '../actions'
+import {ADD_TODO, TOGGLE_TODO, RECEIVE_TASKS, PROCESS_TASK_CREATION_RESPONSE } from '../actions'
 
 const todo = (state, action) => {
   switch (action.type) {
     case ADD_TODO:
       return {
-        id: action.id,
-        text: action.text,
-        completed: false
+        ...action,
+        status: "needsAction",
+        syncInProgress: action.syncInProgress
       }
+    case PROCESS_TASK_CREATION_RESPONSE:
+      if (state.id === action.tempId) {
+        return {
+          ...state,
+          id: action.permanentId,
+          syncInProgress: false
+        }
+      }
+      return state;
+
     case TOGGLE_TODO:
       if (state.id !== action.id) {
         return state
@@ -23,9 +33,7 @@ const todo = (state, action) => {
 }
 
 const starttodos = [
-  {id: "123", title: "hallo", status: "needsAction"},
-  {id: "12323", title: "ciao", status: "needsAction"},
-  {id: "123233", title: "no", status: "needsAction"}
+  {id: "123233", title: " ", status: "needsAction"}
 ]
 
 const tasks = (state = starttodos, action) => {
@@ -35,6 +43,10 @@ const tasks = (state = starttodos, action) => {
         ...state,
         todo(undefined, action)
       ]
+    case PROCESS_TASK_CREATION_RESPONSE:
+      return state.map(t =>
+        todo(t, action)
+      )
     case TOGGLE_TODO:
       return state.map(t =>
         todo(t, action)

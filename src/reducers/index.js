@@ -1,12 +1,12 @@
 import { combineReducers } from 'redux'
 import tasks from './tasks'
-import google from './loginstatus'
+import server from './loginstatus'
 import visibilityFilter from './visibilityFilter'
 
 const todoApp = combineReducers({
   tasks,
   visibilityFilter,
-  google
+  server
 })
 
 export default todoApp

@@ -16,17 +16,13 @@ class VisibleTodoList extends Component {
   }
 
   componentDidUpdate() {
-    if(this.props.google.loginStatus.loggedIn) {
+    if(this.props.server.loginStatus.loggedIn) {
       this.dispatch(getTaskList("MTIwMTcwMjE0MDIyNjI5MDg4ODE6MDow"))
-    } else {
-      console.error("Tried to retrieve task list from Google though user is NOT signed in!")
     }
   }
 
   render() {
     const {tasks} = this.props;
-    console.log("güle güle", this.props)
-
     return (
       <div>
         <TodoList tasks={tasks} />
@@ -38,7 +34,7 @@ class VisibleTodoList extends Component {
 
 
 const mapStateToProps = (state) => ({
-  google: state.google,
+  server: state.server,
   tasks: state.tasks
 })
 
