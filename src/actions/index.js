@@ -115,12 +115,12 @@ export function changeTask(taskId, prop, value, tasklist = "MTIwMTcwMjE0MDIyNjI5
   }
 }
 
-export function addTodo(title, listId = "MTIwMTcwMjE0MDIyNjI5MDg4ODE6MDow") {
+export function addTodo(title, date, listId = "MTIwMTcwMjE0MDIyNjI5MDg4ODE6MDow") {
   
   return (dispatch) => {
 
     const tempId = "NEWTASK"+nextTodoId++;
-    const due = moment().format("YYYY-MM-DD") + "T00:00:00.000Z";
+    const due = date.format("YYYY-MM-DD") + "T00:00:00.000Z";
 
     dispatch(addTodoToList(tempId, title, due))
 
