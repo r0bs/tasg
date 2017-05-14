@@ -4,8 +4,14 @@ import { RIEInput } from 'riek'
 
 class Task extends Component {
 
-  change(newTitle) {
+  titleChange(newTitle) {
     this.props.taskChange(this.props.id, "title", newTitle.value)
+  }
+
+  checked() {
+    const newStatus = this.props.status == "needsAction" ? "completed" : "needsAction";
+
+    this.props.taskChange(this.props.id, "completed", "")
   }
 
   render() {
@@ -15,14 +21,19 @@ class Task extends Component {
     return(
       <li
         style={{
+          listStyleType: 'none',
           textDecoration: status !== "needsAction" ? 'line-through' : 'none',
           fontStyle: syncInProgress ? "italic" : "normal",
           color: syncInProgress ? "grey" : "black"
         }}
       >
+        <input type="checkbox"
+          checked={status === "completed" ? "checked" : ""}
+          onChange={this.checked.bind(this)}
+        />
         <RIEInput
           value={title}
-          change={this.change.bind(this)}
+          change={this.titleChange.bind(this)}
           propName="value" 
           />
       </li>

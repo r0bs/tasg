@@ -1,5 +1,4 @@
 import {DISCOVERY_DOCS, CLIENT_ID, SCOPES} from '../gapi/credentials.js'
-import moment from 'moment'
 
 const gapi = window.gapi
 
