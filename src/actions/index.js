@@ -93,7 +93,7 @@ export const toggleTodo = (id) => ({
   id
 })
 
-export function changeTaskTitle(taskId, value, prop = "title", tasklist = "MTIwMTcwMjE0MDIyNjI5MDg4ODE6MDow") {
+export function changeTask(taskId, prop, value, tasklist = "MTIwMTcwMjE0MDIyNjI5MDg4ODE6MDow") {
   
   return (dispatch) => {
     //dispatch event to add flag for in edit

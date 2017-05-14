@@ -5,7 +5,7 @@ import { RIEInput } from 'riek'
 class Task extends Component {
 
   change(newTitle) {
-    this.props.taskTitleChange(this.props.id, newTitle.value)
+    this.props.taskChange(this.props.id, "title", newTitle.value)
   }
 
   render() {
@@ -16,17 +16,14 @@ class Task extends Component {
       <li
         style={{
           textDecoration: status !== "needsAction" ? 'line-through' : 'none',
-          backgroundColor: syncInProgress ? "lightblue" : "transparent"
+          fontStyle: syncInProgress ? "italic" : "normal",
+          color: syncInProgress ? "grey" : "black"
         }}
       >
         <RIEInput
           value={title}
           change={this.change.bind(this)}
           propName="value" 
-          // className={this.state.highlight ? "editable" : ""}
-          // validate={this.isStringAcceptable}
-          // classLoading="loading"
-          // classInvalid="invalid"
           />
       </li>
     )

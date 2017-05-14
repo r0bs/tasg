@@ -21,7 +21,7 @@ class TodoList extends Component{
         .sort()
         .map((duedate, index)=>{
           return <DateSection 
-                  taskTitleChange={this.props.taskTitleChange}
+                  taskChange={this.props.taskChange}
                   key={index} 
                   date={duedate} 
                   tasks={tasks.filter(task => task.due === duedate)}

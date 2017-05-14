@@ -16,7 +16,7 @@ class DateSection extends Component {
             <ul>
                 {this.props.tasks.map(task =>
                     <Task
-                    taskTitleChange={this.props.taskTitleChange}
+                    taskChange={this.props.taskChange}
                     key={task.id}
                     {...task}
                     />
