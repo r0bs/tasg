@@ -11,7 +11,7 @@ class Task extends Component {
   checked() {
     const newStatus = this.props.status == "needsAction" ? "completed" : "needsAction";
 
-    this.props.taskChange(this.props.id, "completed", "")
+    this.props.taskChange(this.props.id, "status", newStatus)
   }
 
   render() {
