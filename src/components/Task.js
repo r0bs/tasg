@@ -1,6 +1,11 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import { RIEInput } from 'riek'
+import DatePicker from 'react-datepicker'
+import CalendarButton from './CalendarButton'
+import moment from 'moment'
+
+import 'react-datepicker/dist/react-datepicker.css';
 
 class Task extends Component {
 
@@ -9,14 +14,18 @@ class Task extends Component {
   }
 
   checked() {
-    const newStatus = this.props.status == "needsAction" ? "completed" : "needsAction";
+    const newStatus = this.props.status === "needsAction" ? "completed" : "needsAction";
 
     this.props.taskChange(this.props.id, "status", newStatus)
   }
 
+  dateChange(date) {
+    this.props.taskChange(this.props.id, "due", date)
+  }
+
   render() {
 
-    const {status, syncInProgress, title} = this.props;
+    const {status, syncInProgress, title, due} = this.props;
 
     return(
       <li
@@ -35,7 +44,13 @@ class Task extends Component {
           value={title}
           change={this.titleChange.bind(this)}
           propName="value" 
-          />
+        />
+        <DatePicker
+          dateFormat="YYYY-MM-DD"
+          customInput={<CalendarButton />}
+          selected={moment(due)}
+          onChange={this.dateChange.bind(this)}
+        />
       </li>
     )
   }

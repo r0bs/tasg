@@ -95,6 +95,10 @@ export const toggleTodo = (id) => ({
 export function changeTask(taskId, prop, value, tasklist = "MTIwMTcwMjE0MDIyNjI5MDg4ODE6MDow") {
   
   return (dispatch) => {
+
+    if(prop === "due") {
+      value = value.format("YYYY-MM-DD") + "T00:00:00.000Z";
+    }
     //dispatch event to add flag for in edit
     dispatch(editTodoInList(taskId, prop, value))
 
