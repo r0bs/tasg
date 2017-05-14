@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Todo from "./Todo";
+import Task from "./Task";
 import moment from 'moment';
 
 class DateSection extends Component {
@@ -14,10 +14,11 @@ class DateSection extends Component {
         <div>
             <h3 className="Date">{this.props.date == null ? "no due date" : this.makeMoment(this.props.date)}</h3>
             <ul>
-                {this.props.tasks.map(todo =>
-                    <Todo
-                    key={todo.id}
-                    {...todo}
+                {this.props.tasks.map(task =>
+                    <Task
+                    taskTitleChange={this.props.taskTitleChange}
+                    key={task.id}
+                    {...task}
                     />
                 )}
             </ul>

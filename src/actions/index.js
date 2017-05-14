@@ -11,7 +11,9 @@ export const RECEIVE_TASKS = "RECEIVE_TASKS"
 export const ADD_TODO = "ADD_TODO"
 export const EDIT_TASK = "EDIT_TASK"
 export const TOGGLE_TODO = "TOGGLE_TODO"
+export const CHANGE_TODO = "CHANGE_TODO"
 export const PROCESS_TASK_CREATION_RESPONSE = "PROCESS_TASK_CREATION_RESPONSE"
+export const PROCESS_TASK_UPDATE_RESPONSE = "PROCESS_TASK_UPDATE_RESPONSE"
 
 export const SET_VISIBILITY_FILTER = "SET_VISIBILITY_FILTER"
 
@@ -64,6 +66,23 @@ export function processTaskCreationResponse(tempId, permanentId) {
   }
 }
 
+export function editTodoInList(taskId, prop, value) {
+  return {
+    type: CHANGE_TODO,
+    id: taskId,
+    [prop]: value,
+    syncInProgress: true
+  }
+}
+
+export function processTaskUpdateResponse(taskId, prop, value) {
+  return {
+    type: PROCESS_TASK_UPDATE_RESPONSE,
+    id: taskId,
+    [prop]: value
+  }
+}
+
 export const setVisibilityFilter = (filter) => ({
   type: SET_VISIBILITY_FILTER,
   filter
@@ -74,7 +93,30 @@ export const toggleTodo = (id) => ({
   id
 })
 
+export function changeTaskTitle(taskId, value, prop = "title", tasklist = "MTIwMTcwMjE0MDIyNjI5MDg4ODE6MDow") {
+  
+  return (dispatch) => {
+    //dispatch event to add flag for in edit
+    dispatch(editTodoInList(taskId, prop, value))
+
+    window.gapi.client.tasks.tasks.patch({
+        tasklist,
+        task: taskId,
+        [prop]: value
+    }).then(()=> {
+      //dispatch event to remove flag and update view
+      dispatch(processTaskUpdateResponse(taskId, prop, value))
+    })
+
+    // TODO: fehlerbehandlung eibauen!
+
+    // TODO: timeout einbauen!
+
+  }
+}
+
 export function addTodo(title, listId = "MTIwMTcwMjE0MDIyNjI5MDg4ODE6MDow") {
+  
   return (dispatch) => {
 
     const tempId = "NEWTASK"+nextTodoId++;
@@ -93,6 +135,9 @@ export function addTodo(title, listId = "MTIwMTcwMjE0MDIyNjI5MDg4ODE6MDow") {
       dispatch(processTaskCreationResponse(tempId, permanentId))
     })
 
+    // TODO: fehlerbehandlung eibauen!
+
+    // TODO: timeout einbauen!
 
   }
 }
@@ -127,8 +172,6 @@ export function getTaskList(listId) {
         dispatch(receiveTasks(listId, JSON.parse(response.body).items))
       })
     }
-  
- 
 }
 
 

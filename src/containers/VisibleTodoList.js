@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { getTaskList, loginToGoogle } from '../actions'
+import { getTaskList, loginToGoogle, changeTaskTitle } from '../actions'
 import TodoList from '../components/TodoList'
 
 
@@ -21,11 +21,15 @@ class VisibleTodoList extends Component {
     }
   }
 
+  taskTitleChange(newTitle, id) {
+    this.dispatch(changeTaskTitle(newTitle, id))
+  }
+
   render() {
     const {tasks} = this.props;
     return (
       <div>
-        <TodoList tasks={tasks} />
+        <TodoList tasks={tasks} taskTitleChange={this.taskTitleChange.bind(this)} />
       </div>
     )
   }
