@@ -36,10 +36,23 @@ class VisibleTodoList extends Component {
 
 }
 
+const getVisibleTodos = function(tasks, filter) {
+    switch (filter) {
+      case 'SHOW_ALL':
+        return tasks
+      case 'SHOW_COMPLETED':
+        return tasks.filter(t => t.status === "completed")
+      case 'SHOW_ACTIVE':
+        return tasks.filter(t => t.status === "needsAction")
+      default:
+        return tasks
+    }
+  }
+
 
 const mapStateToProps = (state) => ({
   server: state.server,
-  tasks: state.tasks
+  tasks: getVisibleTodos(state.tasks, state.visibilityFilter)
 })
 
 

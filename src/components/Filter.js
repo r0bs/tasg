@@ -1,7 +1,7 @@
 import React from 'react'
 import FilterLink from '../containers/FilterLink'
 
-const Footer = () => (
+const Filter = () => (
   <p>
     Show:
     {" "}
@@ -10,13 +10,13 @@ const Footer = () => (
     </FilterLink>
     {", "}
     <FilterLink filter="SHOW_ACTIVE">
-      Active
+      Todo
     </FilterLink>
     {", "}
     <FilterLink filter="SHOW_COMPLETED">
-      Completed
+      Done
     </FilterLink>
   </p>
 )
 
-export default Footer
+export default Filter
