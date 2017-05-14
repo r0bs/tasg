@@ -101,7 +101,8 @@ export function changeTask(taskId, prop, value, tasklist = "MTIwMTcwMjE0MDIyNjI5
     window.gapi.client.tasks.tasks.patch({
         tasklist,
         task: taskId,
-        [prop]: value
+        [prop]: value,
+        completed: null
     }).then(()=> {
       //dispatch event to remove flag and update view
       dispatch(processTaskUpdateResponse(taskId, prop, value))
