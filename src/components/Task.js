@@ -30,10 +30,7 @@ class Task extends Component {
     return(
       <li
         style={{
-          listStyleType: 'none',
-          textDecoration: status !== "needsAction" ? 'line-through' : 'none',
-          fontStyle: syncInProgress ? "italic" : "normal",
-          color: syncInProgress ? "grey" : "black"
+          listStyleType: 'none'
         }}
         draggable="true"
         onDragStart={e => {
@@ -42,22 +39,23 @@ class Task extends Component {
           }
         }
         >
-        <span
-          style={{
-            width: '30px',
-            height: '30px',
-            backgroundColor: "lightblue"
-          }}>:::
-          </span>
+        <span>:::</span>
         <input type="checkbox"
           checked={status === "completed" ? "checked" : ""}
           onChange={this.checked.bind(this)}
         />
-        <RIEInput
-          value={title}
-          change={this.titleChange.bind(this)}
-          propName="value" 
-        />
+        <span 
+          style={{
+            textDecoration: status !== "needsAction" ? 'line-through' : 'none',
+            fontStyle: syncInProgress ? "italic" : "normal",
+            color: syncInProgress ? "grey" : "black"
+          }}>
+            <RIEInput
+              value={title}
+              change={this.titleChange.bind(this)}
+              propName="value"
+            />
+        </span>
         <DatePicker
           dateFormat="YYYY-MM-DD"
           customInput={<CalendarButton />}
