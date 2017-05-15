@@ -1,28 +1,55 @@
-import React from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-const DropableDiv = ({ children, onDrop }) => {
+export default class DropableDiv extends Component {
 
-  return (
-    <div
-        onDragOver={ e => { 
-            e.preventDefault()
-            e.dataTransfer.dropEffect = "move"
-        }}
-        onDrop={ e => {
-                e.preventDefault()
-                onDrop(e)
-            }
+    constructor() {
+        super();
+        this.state = {
+            hasFocus: false
         }
-    >
-      {children}
-    </div>
-  )
+    }
+
+    setFocus() {
+        this.setState({hasFocus: true})
+    }
+    
+    unsetFocus() {
+        this.setState({hasFocus: false})
+    }
+
+    render() {
+        const {children, onDrop} = this.props;
+
+        return (
+            <div
+                style={{
+                    backgroundColor: this.state.hasFocus ? "#efefef" : "#fff"
+                }}
+                onDragEnter={() => this.setFocus()}
+                onDragOver={ e => { 
+                    this.setFocus()
+                    e.preventDefault()
+                    e.dataTransfer.dropEffect = "move"
+                }}
+
+                onDragLeave={() => this.unsetFocus()}
+                onDragEnd={() => this.unsetFocus()}
+                onDrop={ e => {
+                        e.preventDefault()
+                        onDrop(e)
+                        this.hasFocus = false
+                    }
+                }
+            >
+                {children}
+            </div>
+        )
+
+    }
 }
 
 DropableDiv.propTypes = {
   children: PropTypes.node.isRequired,
   onDrop: PropTypes.func.isRequired
 }
-
-export default DropableDiv
