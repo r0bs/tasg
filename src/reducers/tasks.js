@@ -53,10 +53,6 @@ const todo = (state, action) => {
   }
 }
 
-const starttodos = [
-  {id: "123233", title: " ", status: "needsAction"}
-]
-
 const tasks = (state = [], action) => {
   switch (action.type) {
     case ADD_TODO:

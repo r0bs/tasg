@@ -17,7 +17,18 @@ class DateSection extends Component {
 
   render() {
     return (
-        <div>
+        <div
+            onDragOver={
+                e => {
+                    e.preventDefault()
+                }
+            }
+            onDrop={
+                e => {
+                    e.preventDefault()
+                    this.props.taskChange(e.dataTransfer.getData("id"), "due", moment(this.props.date, moment.ISO_8601))
+                }
+            }>
             <h3 className="Date">{this.props.date == null ? "No Due Date" : this.makeMoment(this.props.date)}</h3>
             <ul>
                 {this.props.tasks.map(task =>

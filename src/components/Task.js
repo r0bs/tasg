@@ -25,7 +25,7 @@ class Task extends Component {
 
   render() {
 
-    const {status, syncInProgress, title, due} = this.props;
+    const {status, syncInProgress, title, due, id} = this.props;
 
     return(
       <li
@@ -35,7 +35,19 @@ class Task extends Component {
           fontStyle: syncInProgress ? "italic" : "normal",
           color: syncInProgress ? "grey" : "black"
         }}
-      >
+        draggable="true"
+        onDragStart={e => {
+          e.dataTransfer.setData("id", id)
+          }
+        }
+        >
+        <span
+          style={{
+            width: '30px',
+            height: '30px',
+            backgroundColor: "lightblue"
+          }}>WW
+          </span>
         <input type="checkbox"
           checked={status === "completed" ? "checked" : ""}
           onChange={this.checked.bind(this)}
