@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Task from "./Task";
 import moment from 'moment';
+import DropableDiv from "./DropableDiv"
 
 class DateSection extends Component {
 
@@ -20,20 +21,19 @@ class DateSection extends Component {
     })
   }
 
+  onDrop(e) {
+    if(e.dataTransfer.getData("due") !== this.props.date) {
+        this.props.taskChange(
+            e.dataTransfer.getData("id"), 
+            "due", 
+            moment(this.props.date, moment.ISO_8601)
+        )
+    }
+  }
+
   render() {
     return (
-        <div
-            onDragOver={ e => { 
-                e.preventDefault()
-                e.dataTransfer.dropEffect = "move"
-            }}
-            onDrop={ e => {
-                    e.preventDefault()
-                    if(e.dataTransfer.getData("due") !== this.props.date) {
-                        this.props.taskChange(e.dataTransfer.getData("id"), "due", moment(this.props.date, moment.ISO_8601))
-                    }
-                }
-            }>
+        <DropableDiv onDrop={this.onDrop.bind(this)} >
             <h3 className="Date">{this.props.date == null ? "No Due Date" : this.makeMoment(this.props.date)}</h3>
             <ul>
                 {this.props.tasks.map(task =>
@@ -44,7 +44,7 @@ class DateSection extends Component {
                     />
                 )}
             </ul>
-        </div>
+        </DropableDiv>
     );
   }
 
