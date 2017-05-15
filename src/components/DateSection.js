@@ -4,6 +4,11 @@ import moment from 'moment';
 
 class DateSection extends Component {
 
+    constructor() {
+        super();
+        this.dropzone = 0;
+    }
+
   makeMoment(date) {
     return moment(date, moment.ISO_8601).calendar(null, {
         sameDay: '[Today]',
@@ -18,15 +23,15 @@ class DateSection extends Component {
   render() {
     return (
         <div
-            onDragOver={
-                e => {
+            onDragOver={ e => { 
+                e.preventDefault()
+                e.dataTransfer.dropEffect = "move"
+            }}
+            onDrop={ e => {
                     e.preventDefault()
-                }
-            }
-            onDrop={
-                e => {
-                    e.preventDefault()
-                    this.props.taskChange(e.dataTransfer.getData("id"), "due", moment(this.props.date, moment.ISO_8601))
+                    if(e.dataTransfer.getData("due") !== this.props.date) {
+                        this.props.taskChange(e.dataTransfer.getData("id"), "due", moment(this.props.date, moment.ISO_8601))
+                    }
                 }
             }>
             <h3 className="Date">{this.props.date == null ? "No Due Date" : this.makeMoment(this.props.date)}</h3>

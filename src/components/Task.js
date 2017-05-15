@@ -38,6 +38,7 @@ class Task extends Component {
         draggable="true"
         onDragStart={e => {
           e.dataTransfer.setData("id", id)
+          e.dataTransfer.setData("due", due)
           }
         }
         >
@@ -46,7 +47,7 @@ class Task extends Component {
             width: '30px',
             height: '30px',
             backgroundColor: "lightblue"
-          }}>WW
+          }}>:::
           </span>
         <input type="checkbox"
           checked={status === "completed" ? "checked" : ""}
