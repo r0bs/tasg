@@ -94,13 +94,21 @@ export const toggleTodo = (id) => ({
 
 export function changeTask(taskId, prop, value, tasklist = "MTIwMTcwMjE0MDIyNjI5MDg4ODE6MDow") {
   
-  return (dispatch) => {
+  return (dispatch, getState) => {
 
     if(prop === "due") {
       value = value.format("YYYY-MM-DD") + "T00:00:00.000Z";
     }
     //dispatch event to add flag for in edit
     dispatch(editTodoInList(taskId, prop, value))
+
+    // this is an ungly hack! checks wether user is signed in to google
+    // if not, dispatches task update action as if server repsponded
+    // and returns form the action creator
+    if(!getState().server.loginStatus.loggedIn) {
+      dispatch(processTaskUpdateResponse(taskId, prop, value))
+      return
+    }
 
     window.gapi.client.tasks.tasks.patch({
         tasklist,
@@ -121,12 +129,20 @@ export function changeTask(taskId, prop, value, tasklist = "MTIwMTcwMjE0MDIyNjI5
 
 export function addTodo(title, date, listId = "MTIwMTcwMjE0MDIyNjI5MDg4ODE6MDow") {
   
-  return (dispatch) => {
+  return (dispatch, getState) => {
 
     const tempId = "NEWTASK"+nextTodoId++;
     const due = date.format("YYYY-MM-DD") + "T00:00:00.000Z";
 
     dispatch(addTodoToList(tempId, title, due))
+
+    // this is an ungly hack! checks wether user is signed in to google
+    // if not, dispatches task update action as if server repsponded
+    // and returns form the action creator
+    if(!getState().server.loginStatus.loggedIn) {
+      dispatch(processTaskCreationResponse(tempId, tempId))
+      return
+    }
 
     gapi.client.tasks.tasks.insert({
       tasklist: listId,
