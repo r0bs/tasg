@@ -38,7 +38,7 @@ export default class DropableDiv extends Component {
                 onDrop={ e => {
                         e.preventDefault()
                         onDrop(e)
-                        this.hasFocus = false
+                        this.unsetFocus()
                     }
                 }
             >
