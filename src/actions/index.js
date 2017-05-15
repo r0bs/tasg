@@ -18,6 +18,7 @@ export const SET_VISIBILITY_FILTER = "SET_VISIBILITY_FILTER"
 
 export const REQUEST_LOGIN = "REQUEST_LOGIN"
 export const LOGGED_IN = "LOGGED_IN"
+export const LOGIN_FAILED = "LOGIN_FAILED"
 
 export function requestLogin() {
   return {
@@ -28,6 +29,12 @@ export function requestLogin() {
 export function loggedIn() {
   return {
     type: LOGGED_IN
+  }
+}
+
+export function loginFailed() {
+  return {
+    type: LOGIN_FAILED
   }
 }
 
@@ -117,11 +124,11 @@ export function changeTask(taskId, prop, value, tasklist = "MTIwMTcwMjE0MDIyNjI5
         completed: null
     }).then(()=> {
       //dispatch event to remove flag and update view
+      console.log(!getState().server.loginStatus.loggedIn)
       dispatch(processTaskUpdateResponse(taskId, prop, value))
     })
 
     // TODO: fehlerbehandlung eibauen!
-
     // TODO: timeout einbauen!
 
   }
@@ -140,8 +147,8 @@ export function addTodo(title, date, listId = "MTIwMTcwMjE0MDIyNjI5MDg4ODE6MDow"
     // if not, dispatches task update action as if server repsponded
     // and returns form the action creator
     if(!getState().server.loginStatus.loggedIn) {
-      dispatch(processTaskCreationResponse(tempId, tempId))
-      return
+      console.log(!getState().server.loginStatus.loggedIn)
+      return dispatch(processTaskCreationResponse(tempId, tempId))
     }
 
     gapi.client.tasks.tasks.insert({
@@ -156,7 +163,6 @@ export function addTodo(title, date, listId = "MTIwMTcwMjE0MDIyNjI5MDg4ODE6MDow"
     })
 
     // TODO: fehlerbehandlung eibauen!
-
     // TODO: timeout einbauen!
 
   }
@@ -172,8 +178,12 @@ export function loginToGoogle() {
             discoveryDocs: DISCOVERY_DOCS,
             clientId: CLIENT_ID,
             scope: SCOPES
-        }).then(()=> {
+        }).then(() => {
+          if(gapi.auth2.getAuthInstance().isSignedIn.get()) {
             dispatch(loggedIn())
+          } else {
+            dispatch(loginFailed())
+          }
         })
 
     })

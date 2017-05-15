@@ -12,13 +12,25 @@ class VisibleTodoList extends Component {
   }
 
   componentWillMount() {
+
+    //this normally doesn't belong here
     this.dispatch(loginToGoogle())
+    
+    //this timeout is just for now
+    setTimeout(
+      ()=> {
+        if(this.props.server.loginStatus.loggedIn) {
+          this.dispatch(getTaskList("MTIwMTcwMjE0MDIyNjI5MDg4ODE6MDow"))
+        }
+      }, 
+      1000
+    )
   }
 
-  componentDidUpdate() {
-    if(this.props.server.loginStatus.loggedIn) {
-      this.dispatch(getTaskList("MTIwMTcwMjE0MDIyNjI5MDg4ODE6MDow"))
-    }
+  componentDidMount() {
+    
+    
+    
   }
 
   taskChange(id, prop, value) {
