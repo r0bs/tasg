@@ -1,7 +1,8 @@
 import { combineReducers } from 'redux'
 import { 
     REQUEST_LOGIN , 
-    LOGGED_IN, 
+    LOGGED_IN,
+    LOGGED_OUT,
     REQUEST_TASKS,
     RECEIVE_TASKS,
     CHANGE_TODO, 
@@ -12,7 +13,7 @@ import {
 
 
 const defaultLoginStatusObject = {
-    loggedIn: false, 
+    isLoggedIn: false, 
     loginInProgress: false
 }
 
@@ -25,12 +26,13 @@ const loginStatus = (state = defaultLoginStatusObject, action) => {
             })
         case LOGGED_IN:
             return Object.assign({}, state, {
-                loggedIn: true,
+                isLoggedIn: true,
                 loginInProgress: false
             })
+        case LOGGED_OUT:
         case LOGIN_FAILED:
             return Object.assign({}, state, {
-                loggedIn: false,
+                isLoggedIn: false,
                 loginInProgress: false
             })
         default:

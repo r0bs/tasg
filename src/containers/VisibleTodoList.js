@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { getTaskList, loginToGoogle, changeTask } from '../actions'
+import { getTaskList, changeTask, laodGoogleClientAsync } from '../actions'
 import TodoList from '../components/TodoList'
 
 
@@ -9,28 +9,7 @@ class VisibleTodoList extends Component {
   constructor(props) {
     super(props)
     this.dispatch = this.props.dispatch;
-  }
-
-  componentWillMount() {
-
-    //this normally doesn't belong here
-    this.dispatch(loginToGoogle())
-    
-    //this timeout is just for now
-    setTimeout(
-      ()=> {
-        if(this.props.server.loginStatus.loggedIn) {
-          this.dispatch(getTaskList("MTIwMTcwMjE0MDIyNjI5MDg4ODE6MDow"))
-        }
-      }, 
-      1000
-    )
-  }
-
-  componentDidMount() {
-    
-    
-    
+    this.dispatch(laodGoogleClientAsync())
   }
 
   taskChange(id, prop, value) {

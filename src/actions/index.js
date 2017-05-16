@@ -16,9 +16,25 @@ export const PROCESS_TASK_UPDATE_RESPONSE = "PROCESS_TASK_UPDATE_RESPONSE"
 
 export const SET_VISIBILITY_FILTER = "SET_VISIBILITY_FILTER"
 
+export const LOAD_GOOGLE_CLIENT = "LOAD_GOOGLE_CLIENT"
+export const CHECK_SIGNIN_STATUS = "CHECK_SIGNIN_STATUS"
 export const REQUEST_LOGIN = "REQUEST_LOGIN"
 export const LOGGED_IN = "LOGGED_IN"
+export const LOGGED_OUT = "LOGGED_OUT"
 export const LOGIN_FAILED = "LOGIN_FAILED"
+
+
+export function loadGoogleClient() {
+  return {
+    type: LOAD_GOOGLE_CLIENT
+  }
+}
+
+export function checkSigninStatus() {
+  return {
+    type: CHECK_SIGNIN_STATUS
+  }
+}
 
 export function requestLogin() {
   return {
@@ -29,6 +45,12 @@ export function requestLogin() {
 export function loggedIn() {
   return {
     type: LOGGED_IN
+  }
+}
+
+export function loggedOut() {
+  return {
+    type: LOGGED_OUT
   }
 }
 
@@ -112,19 +134,19 @@ export function changeTask(taskId, prop, value, tasklist = "MTIwMTcwMjE0MDIyNjI5
     // this is an ungly hack! checks wether user is signed in to google
     // if not, dispatches task update action as if server repsponded
     // and returns form the action creator
-    if(!getState().server.loginStatus.loggedIn) {
+    if(!getState().server.loginStatus.isLoggedIn) {
       dispatch(processTaskUpdateResponse(taskId, prop, value))
       return
     }
 
-    window.gapi.client.tasks.tasks.patch({
+    gapi.client.tasks.tasks.patch({
         tasklist,
         task: taskId,
         [prop]: value,
         completed: null
     }).then(()=> {
       //dispatch event to remove flag and update view
-      console.log(!getState().server.loginStatus.loggedIn)
+      console.log(!getState().server.loginStatus.isLoggedIn)
       dispatch(processTaskUpdateResponse(taskId, prop, value))
     })
 
@@ -146,8 +168,7 @@ export function addTodo(title, date, listId = "MTIwMTcwMjE0MDIyNjI5MDg4ODE6MDow"
     // this is an ungly hack! checks wether user is signed in to google
     // if not, dispatches task update action as if server repsponded
     // and returns form the action creator
-    if(!getState().server.loginStatus.loggedIn) {
-      console.log(!getState().server.loginStatus.loggedIn)
+    if(!getState().server.loginStatus.isLoggedIn) {
       return dispatch(processTaskCreationResponse(tempId, tempId))
     }
 
@@ -168,10 +189,34 @@ export function addTodo(title, date, listId = "MTIwMTcwMjE0MDIyNjI5MDg4ODE6MDow"
   }
 }
 
-export function loginToGoogle() {
+export function checkIfUserIsSignedInWithGoogle() {
+  return (dispatch) => {
+    dispatch(checkSigninStatus())
+    if(gapi.auth2.getAuthInstance().isSignedIn.get()) {
+      dispatch(loggedIn())
+    }
+  }
+}
+
+export function registerSignInStatusListener() {
+  return (dispatch) => {
+      // Register Listener for sign in status changes
+      gapi.auth2.getAuthInstance().isSignedIn.listen((isSignedIn) => {
+        if(isSignedIn) {
+          dispatch(loggedIn())
+          //dispatch(getTaskList("MTIwMTcwMjE0MDIyNjI5MDg4ODE6MDow"))
+        } else {
+          dispatch(loggedOut())
+        }
+      })
+  }
+}
+
+
+export function laodGoogleClientAsync() {
   return (dispatch) => {
 
-    dispatch(requestLogin())
+    dispatch(loadGoogleClient())
 
     gapi.load('client:auth2', ()=>{
       gapi.client.init({
@@ -179,17 +224,33 @@ export function loginToGoogle() {
             clientId: CLIENT_ID,
             scope: SCOPES
         }).then(() => {
-          if(gapi.auth2.getAuthInstance().isSignedIn.get()) {
-            dispatch(loggedIn())
-          } else {
-            dispatch(loginFailed())
-          }
+          dispatch(checkIfUserIsSignedInWithGoogle())
+          dispatch(registerSignInStatusListener())
         })
 
     })
-  
+    
   }
 }
+
+export function loginToGoogle() {
+  return (dispatch) => {
+    dispatch(requestLogin())
+    gapi.auth2.getAuthInstance().signIn().then(() => {
+      //dispatch(loggedIn())
+    })
+  }
+}
+
+export function logoutOfGoogle() {
+  return(dispatch) => {
+    gapi.auth2.getAuthInstance().signOut().then(() => {
+      //dispatch(loggedOut())
+    });
+    
+  }
+}
+
 
 export function getTaskList(listId) {
 
