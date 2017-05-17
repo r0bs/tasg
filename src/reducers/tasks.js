@@ -4,7 +4,8 @@ import {
   RECEIVE_TASKS, 
   PROCESS_TASK_CREATION_RESPONSE, 
   PROCESS_TASK_UPDATE_RESPONSE,
-  CHANGE_TODO
+  CHANGE_TODO,
+  SET_DEFAULT_LIST
  } from '../actions'
 
 const todo = (state, action) => {
@@ -60,6 +61,8 @@ const tasks = (state = [], action) => {
         ...state,
         todo(undefined, action)
       ]
+    case SET_DEFAULT_LIST:
+      return []
     case PROCESS_TASK_CREATION_RESPONSE:
     case PROCESS_TASK_UPDATE_RESPONSE:
     case TOGGLE_TODO:

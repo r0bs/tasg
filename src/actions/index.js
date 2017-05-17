@@ -26,6 +26,7 @@ export const LOGGED_IN = "LOGGED_IN"
 export const NOT_LOGGED_IN = "NOT_LOGGED_IN"
 export const LOGGED_OUT = "LOGGED_OUT"
 export const LOGIN_FAILED = "LOGIN_FAILED"
+export const SET_DEFAULT_LIST = "SET_DEFAULT_LIST"
 
 
 export function loadGoogleClient() {
@@ -135,6 +136,13 @@ export function processTaskUpdateResponse(taskId, prop, value) {
   }
 }
 
+export function setDefaultList(tasklist) {
+  return {
+    type: SET_DEFAULT_LIST,
+    tasklist
+  }
+}
+
 export const setVisibilityFilter = (filter) => ({
   type: SET_VISIBILITY_FILTER,
   filter
@@ -179,6 +187,13 @@ export function changeTask(taskId, prop, value, tasklist) {
     // TODO: fehlerbehandlung eibauen!
     // TODO: timeout einbauen!
 
+  }
+}
+
+export function setDefaultTaskList(tasklist) {
+  return (dispatch) => {
+    dispatch(setDefaultList(tasklist))
+    dispatch(getTasks())
   }
 }
 
