@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { getTaskList, changeTask, laodGoogleClientAsync } from '../actions'
+import {getTaskLists, getTaskList, changeTask, laodGoogleClientAsync } from '../actions'
 import TodoList from '../components/TodoList'
 
 

@@ -2,6 +2,7 @@ import { combineReducers } from 'redux'
 import { 
     REQUEST_LOGIN , 
     LOGGED_IN,
+    NOT_LOGGED_IN,
     LOGGED_OUT,
     REQUEST_TASKS,
     RECEIVE_TASKS,
@@ -29,6 +30,7 @@ const loginStatus = (state = defaultLoginStatusObject, action) => {
                 isLoggedIn: true,
                 loginInProgress: false
             })
+        case NOT_LOGGED_IN:
         case LOGGED_OUT:
         case LOGIN_FAILED:
             return Object.assign({}, state, {

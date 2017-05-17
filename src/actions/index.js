@@ -7,6 +7,9 @@ let nextTodoId = 0
 export const REQUEST_TASKS = "REQUEST_TASKS"
 export const RECEIVE_TASKS = "RECEIVE_TASKS"
 
+export const REQUEST_TASKLISTS = "REQUEST_TASKLISTS"
+export const RECEIVE_TASKLISTS = "RECEIVE_TASKLISTS"
+
 export const ADD_TODO = "ADD_TODO"
 export const EDIT_TASK = "EDIT_TASK"
 export const TOGGLE_TODO = "TOGGLE_TODO"
@@ -20,6 +23,7 @@ export const LOAD_GOOGLE_CLIENT = "LOAD_GOOGLE_CLIENT"
 export const CHECK_SIGNIN_STATUS = "CHECK_SIGNIN_STATUS"
 export const REQUEST_LOGIN = "REQUEST_LOGIN"
 export const LOGGED_IN = "LOGGED_IN"
+export const NOT_LOGGED_IN = "NOT_LOGGED_IN"
 export const LOGGED_OUT = "LOGGED_OUT"
 export const LOGIN_FAILED = "LOGIN_FAILED"
 
@@ -45,6 +49,12 @@ export function requestLogin() {
 export function loggedIn() {
   return {
     type: LOGGED_IN
+  }
+}
+
+export function notloggedIn() {
+  return {
+    type: NOT_LOGGED_IN
   }
 }
 
@@ -74,6 +84,20 @@ export function receiveTasks(listId, tasks) {
     tasks
   }
 }
+
+export function requestTasklists() {
+  return {
+    type: REQUEST_TASKLISTS,
+  }
+}
+
+export function receiveTasklists(tasklists) {
+  return {
+    type: RECEIVE_TASKLISTS,
+    tasklists
+  }
+}
+
 
 export function addTodoToList(id, title, due) {
   return {
@@ -121,9 +145,11 @@ export const toggleTodo = (id) => ({
   id
 })
 
-export function changeTask(taskId, prop, value, tasklist = "MTIwMTcwMjE0MDIyNjI5MDg4ODE6MDow") {
+export function changeTask(taskId, prop, value, tasklist) {
   
   return (dispatch, getState) => {
+
+    tasklist = !tasklist ? getState().tasklists.default.id : tasklist
 
     if(prop === "due") {
       value = value.format("YYYY-MM-DD") + "T00:00:00.000Z";
@@ -156,9 +182,11 @@ export function changeTask(taskId, prop, value, tasklist = "MTIwMTcwMjE0MDIyNjI5
   }
 }
 
-export function addTodo(title, date, listId = "MTIwMTcwMjE0MDIyNjI5MDg4ODE6MDow") {
+export function addTodo(title, date, tasklist) {
   
   return (dispatch, getState) => {
+
+    tasklist = !tasklist ? getState().tasklists.default.id : tasklist
 
     const tempId = "NEWTASK"+nextTodoId++;
     const due = date.format("YYYY-MM-DD") + "T00:00:00.000Z";
@@ -173,7 +201,7 @@ export function addTodo(title, date, listId = "MTIwMTcwMjE0MDIyNjI5MDg4ODE6MDow"
     }
 
     gapi.client.tasks.tasks.insert({
-      tasklist: listId,
+      tasklist,
       title: title,
       due: due
     }).then((response)=>{
@@ -194,6 +222,9 @@ export function checkIfUserIsSignedInWithGoogle() {
     dispatch(checkSigninStatus())
     if(gapi.auth2.getAuthInstance().isSignedIn.get()) {
       dispatch(loggedIn())
+      dispatch(getTaskLists())
+    } else {
+      dispatch(notloggedIn())
     }
   }
 }
@@ -204,7 +235,7 @@ export function registerSignInStatusListener() {
       gapi.auth2.getAuthInstance().isSignedIn.listen((isSignedIn) => {
         if(isSignedIn) {
           dispatch(loggedIn())
-          //dispatch(getTaskList("MTIwMTcwMjE0MDIyNjI5MDg4ODE6MDow"))
+          dispatch(getTaskLists())
         } else {
           dispatch(loggedOut())
         }
@@ -236,36 +267,41 @@ export function laodGoogleClientAsync() {
 export function loginToGoogle() {
   return (dispatch) => {
     dispatch(requestLogin())
-    gapi.auth2.getAuthInstance().signIn().then(() => {
-      //dispatch(loggedIn())
-    })
+    gapi.auth2.getAuthInstance().signIn()
   }
 }
 
 export function logoutOfGoogle() {
   return(dispatch) => {
-    gapi.auth2.getAuthInstance().signOut().then(() => {
-      //dispatch(loggedOut())
-    });
-    
+    gapi.auth2.getAuthInstance().signOut()
   }
 }
 
+export function getTaskLists() {
+  return(dispatch) => {
 
-export function getTaskList(listId) {
+    dispatch(requestTasklists())
 
-    return (dispatch) => {
-      dispatch(requestTasks(listId))
+    gapi.client.tasks.tasklists.list()
+    .then((response)=> {
+      dispatch(receiveTasklists(JSON.parse(response.body).items))
+      dispatch(getTasks())
+    })
 
-      gapi.client.tasks.tasks.list({
-        'tasklist': listId
-      }).then((response)=> {  
-        dispatch(receiveTasks(listId, JSON.parse(response.body).items))
-      })
-    }
+  }
 }
 
+export function getTasks(tasklist) {
+    return (dispatch, getState) => {
 
-export function getTaskListIfLoggedInAlready() {
+      tasklist = !tasklist ? getState().tasklists.default.id : tasklist
 
+      dispatch(requestTasks(tasklist))
+
+      gapi.client.tasks.tasks.list({
+        'tasklist': tasklist
+      }).then((response)=> {  
+        dispatch(receiveTasks(tasklist, JSON.parse(response.body).items))
+      })
+    }
 }
