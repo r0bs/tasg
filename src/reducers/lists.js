@@ -1,24 +1,60 @@
-import { RECEIVE_TASKLISTS, SET_DEFAULT_LIST } from '../actions'
+import { RECEIVE_TASKLISTS, 
+    SET_DEFAULT_LIST, 
+    ADD_TASK_LIST, 
+    PROCESS_TASKLIST_CREATION_RESPONSE 
+} from '../actions'
 
-const defaultStateObject = { all: [], default: { id: "templist"} }
-
-const tasklists = (state = defaultStateObject, action) => {
+const list = (state = {id: "localtemplist"}, action) => {
   switch (action.type) {
-    case RECEIVE_TASKLISTS:
-        return {
-            all: [ ...action.tasklists ],
-            default: action.tasklists[0]
-        }
-    case SET_DEFAULT_LIST:
+    case ADD_TASK_LIST:
         return {
             ...state,
-            default: state.all.find(list => {
-                return list.id === action.tasklist
-            })
+            ...action
+        }
+    case SET_DEFAULT_LIST:
+        if (state.id !== action.tasklist) {
+            return {
+                ...state,
+                default: false
+            }
+        }
+        return {
+            ...state,
+            default: true
+        }
+    case PROCESS_TASKLIST_CREATION_RESPONSE:
+      if (state.id !== action.tempId) {
+        return state
+      }
+      return {
+          ...state,
+          id: action.permanentId,
+          syncInProgress: false
         }
     default:
-        return state
+      return state
   }
+}
+
+const tasklists = (state = [], action) => {
+    switch (action.type) {
+        case ADD_TASK_LIST:
+            return [
+                ...state,
+                list(undefined, action)
+            ]
+        case SET_DEFAULT_LIST:
+        case PROCESS_TASKLIST_CREATION_RESPONSE:
+            return state.map(t =>
+                list(t, action)
+            )
+        case RECEIVE_TASKLISTS:
+            return [
+                ...action.tasklists
+            ]
+        default:
+            return state
+    }
 }
 
 export default tasklists

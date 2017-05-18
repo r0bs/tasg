@@ -13,7 +13,7 @@ export default class TaskListsDropDown extends Component {
             <select onChange={this.handleSelect.bind(this)}>
                 {
                     this.props.tasklists.map((list)=> {
-                        return <option value={list.id}>{list.title}</option>
+                        return <option value={list.id} selected={list.default}>{list.title}</option>
                     })
                 }
             </select>

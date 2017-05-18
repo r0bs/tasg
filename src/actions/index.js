@@ -3,6 +3,7 @@ import {DISCOVERY_DOCS, CLIENT_ID, SCOPES} from '../gapi/credentials.js'
 const gapi = window.gapi
 
 let nextTodoId = 0
+let nextTodoListId = 0
 
 export const REQUEST_TASKS = "REQUEST_TASKS"
 export const RECEIVE_TASKS = "RECEIVE_TASKS"
@@ -26,6 +27,9 @@ export const LOGGED_IN = "LOGGED_IN"
 export const NOT_LOGGED_IN = "NOT_LOGGED_IN"
 export const LOGGED_OUT = "LOGGED_OUT"
 export const LOGIN_FAILED = "LOGIN_FAILED"
+
+export const ADD_TASK_LIST = "ADD_TASK_LIST"
+export const PROCESS_TASKLIST_CREATION_RESPONSE = "PROCESS_TASKLIST_CREATION_RESPONSE"
 export const SET_DEFAULT_LIST = "SET_DEFAULT_LIST"
 
 
@@ -93,6 +97,7 @@ export function requestTasklists() {
 }
 
 export function receiveTasklists(tasklists) {
+  console.log("tasklists: ", tasklists)
   return {
     type: RECEIVE_TASKLISTS,
     tasklists
@@ -119,6 +124,14 @@ export function processTaskCreationResponse(tempId, permanentId) {
   }
 }
 
+export function processTasklistCreationResponse(tempId, permanentId) {
+  return {
+    type: PROCESS_TASKLIST_CREATION_RESPONSE,
+    tempId,
+    permanentId
+  }
+}
+
 export function editTodoInList(taskId, prop, value) {
   return {
     type: CHANGE_TODO,
@@ -133,6 +146,15 @@ export function processTaskUpdateResponse(taskId, prop, value) {
     type: PROCESS_TASK_UPDATE_RESPONSE,
     id: taskId,
     [prop]: value
+  }
+}
+
+export function addTaskListActionCreator(id, title) {
+  return {
+    type: ADD_TASK_LIST,
+    title,
+    id,
+    syncInProgress: true
   }
 }
 
@@ -157,7 +179,7 @@ export function changeTask(taskId, prop, value, tasklist) {
   
   return (dispatch, getState) => {
 
-    tasklist = !tasklist ? getState().tasklists.default.id : tasklist
+    tasklist = !tasklist ? getState().defaultlist : tasklist
 
     if(prop === "due") {
       value = value.format("YYYY-MM-DD") + "T00:00:00.000Z";
@@ -201,8 +223,7 @@ export function addTodo(title, date, tasklist) {
   
   return (dispatch, getState) => {
 
-    tasklist = !tasklist ? getState().tasklists.default.id : tasklist
-    tasklist = !tasklist ? "templist" : null
+    tasklist = !tasklist ? getState().defaultlist : tasklist
 
     const tempId = "NEWTASK"+nextTodoId++;
     const due = date.format("YYYY-MM-DD") + "T00:00:00.000Z";
@@ -293,6 +314,27 @@ export function logoutOfGoogle() {
   }
 }
 
+export function addTasklist(title) {
+  return(dispatch) => {
+
+    const tempId = "NEWTASKLIST"+nextTodoListId++;
+    
+    //add new tasklist to list of tasklists
+    dispatch(addTaskListActionCreator(tempId, title))
+
+    gapi.client.tasks.tasklists.insert({
+      title
+    }).then((response)=> {
+      const permanentId = JSON.parse(response.body).id
+      //exchange temporary with permanent id
+      dispatch(processTasklistCreationResponse(tempId, permanentId))
+      //set new tasklist as default
+      dispatch(setDefaultList(permanentId))
+    })
+
+  }
+}
+
 export function getTaskLists() {
   return(dispatch) => {
 
@@ -310,7 +352,7 @@ export function getTaskLists() {
 export function getTasks(tasklist) {
     return (dispatch, getState) => {
 
-      tasklist = !tasklist ? getState().tasklists.default.id : tasklist
+      tasklist = !tasklist ? getState().defaultlist : tasklist
 
       dispatch(requestTasks(tasklist))
 
