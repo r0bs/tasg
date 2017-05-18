@@ -202,6 +202,7 @@ export function addTodo(title, date, tasklist) {
   return (dispatch, getState) => {
 
     tasklist = !tasklist ? getState().tasklists.default.id : tasklist
+    tasklist = !tasklist ? "templist" : null
 
     const tempId = "NEWTASK"+nextTodoId++;
     const due = date.format("YYYY-MM-DD") + "T00:00:00.000Z";

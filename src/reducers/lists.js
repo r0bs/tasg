@@ -1,6 +1,6 @@
 import { RECEIVE_TASKLISTS, SET_DEFAULT_LIST } from '../actions'
 
-const defaultStateObject = { all: [] }
+const defaultStateObject = { all: [], default: { id: "templist"} }
 
 const tasklists = (state = defaultStateObject, action) => {
   switch (action.type) {
