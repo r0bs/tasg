@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { setDefaultTaskList, addTasklist } from '../actions'
+import { setDefaultTaskList, addTasklist } from '../actions/tasklists'
 import TaskListsDropDown from '../components/TaskListsDropDown'
 import AddTasklist from '../components/AddTasklist'
 

@@ -2,7 +2,7 @@ import { RECEIVE_TASKLISTS,
     SET_DEFAULT_LIST, 
     ADD_TASK_LIST, 
     PROCESS_TASKLIST_CREATION_RESPONSE 
-} from '../actions'
+} from '../actions/tasklists'
 
 const list = (state, action) => {
   switch (action.type) {

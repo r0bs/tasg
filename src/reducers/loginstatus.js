@@ -4,13 +4,15 @@ import {
     LOGGED_IN,
     NOT_LOGGED_IN,
     LOGGED_OUT,
+    LOGIN_FAILED 
+} from '../actions/google'
+import {
     REQUEST_TASKS,
     RECEIVE_TASKS,
     CHANGE_TODO, 
     PROCESS_TASK_CREATION_RESPONSE,
-    PROCESS_TASK_UPDATE_RESPONSE,
-    LOGIN_FAILED 
-} from '../actions'
+    PROCESS_TASK_UPDATE_RESPONSE
+} from '../actions/tasks'
 
 
 const defaultLoginStatusObject = {

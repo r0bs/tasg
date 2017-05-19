@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { loginToGoogle, logoutOfGoogle } from '../actions'
+import { loginToGoogle, logoutOfGoogle } from '../actions/google'
 import LoginButton from '../components/LoginButton'
 
 const mapDispatchToProps = (dispatch) => ({

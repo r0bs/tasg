@@ -4,9 +4,9 @@ import {
   RECEIVE_TASKS, 
   PROCESS_TASK_CREATION_RESPONSE, 
   PROCESS_TASK_UPDATE_RESPONSE,
-  CHANGE_TODO,
-  SET_DEFAULT_LIST
- } from '../actions'
+  CHANGE_TODO
+ } from '../actions/tasks'
+ import { SET_DEFAULT_LIST } from '../actions/tasklists'
 
 const todo = (state, action) => {
   switch (action.type) {
