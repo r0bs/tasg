@@ -1,6 +1,6 @@
 import React from 'react'
 import Filter from './Filter'
-import AddTodo from '../containers/AddTodo'
+import AddTaskContainer from '../containers/AddTaskContainer'
 import VisibleTodoList from '../containers/VisibleTodoList'
 import VisibleLoginButton from '../containers/VisibleLoginButton'
 import Tasklists from '../containers/Tasklists'
@@ -8,7 +8,7 @@ import Tasklists from '../containers/Tasklists'
 const App = () => (
   <div>
     <VisibleLoginButton />
-    <AddTodo />
+    <AddTaskContainer />
     <Tasklists />
     <Filter />
     <VisibleTodoList />
