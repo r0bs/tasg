@@ -4,7 +4,7 @@ import { RECEIVE_TASKLISTS,
     PROCESS_TASKLIST_CREATION_RESPONSE 
 } from '../actions'
 
-const list = (state = {id: "localtemplist"}, action) => {
+const list = (state, action) => {
   switch (action.type) {
     case ADD_TASK_LIST:
         return {
@@ -36,7 +36,7 @@ const list = (state = {id: "localtemplist"}, action) => {
   }
 }
 
-const tasklists = (state = [], action) => {
+const tasklists = (state = [{id: "localtemplist", default: true}], action) => {
     switch (action.type) {
         case ADD_TASK_LIST:
             return [

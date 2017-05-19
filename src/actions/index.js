@@ -179,7 +179,7 @@ export function changeTask(taskId, prop, value, tasklist) {
   
   return (dispatch, getState) => {
 
-    tasklist = !tasklist ? getState().defaultlist : tasklist
+    tasklist = !tasklist ? getState().tasklists.find(l => l.default).id : tasklist
 
     if(prop === "due") {
       value = value.format("YYYY-MM-DD") + "T00:00:00.000Z";
@@ -223,7 +223,7 @@ export function addTodo(title, date, tasklist) {
   
   return (dispatch, getState) => {
 
-    tasklist = !tasklist ? getState().defaultlist : tasklist
+    tasklist = !tasklist ? getState().tasklists.find(l => l.default).id : tasklist
 
     const tempId = "NEWTASK"+nextTodoId++;
     const due = date.format("YYYY-MM-DD") + "T00:00:00.000Z";
@@ -342,7 +342,9 @@ export function getTaskLists() {
 
     gapi.client.tasks.tasklists.list()
     .then((response)=> {
-      dispatch(receiveTasklists(JSON.parse(response.body).items))
+      const lists = JSON.parse(response.body).items
+      dispatch(receiveTasklists(lists))
+      dispatch(setDefaultList(lists[0].id))
       dispatch(getTasks())
     })
 
@@ -352,7 +354,7 @@ export function getTaskLists() {
 export function getTasks(tasklist) {
     return (dispatch, getState) => {
 
-      tasklist = !tasklist ? getState().defaultlist : tasklist
+      tasklist = !tasklist ? getState().tasklists.find(l => l.default).id : tasklist
 
       dispatch(requestTasks(tasklist))
 

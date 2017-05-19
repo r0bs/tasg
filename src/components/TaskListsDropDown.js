@@ -10,10 +10,16 @@ export default class TaskListsDropDown extends Component {
 
     render() {
         return(
-            <select onChange={this.handleSelect.bind(this)}>
+            <select 
+                onChange={this.handleSelect.bind(this)} 
+                defaultValue={this.props.tasklists.find(l => l.default)} >
                 {
                     this.props.tasklists.map((list)=> {
-                        return <option value={list.id} selected={list.default}>{list.title}</option>
+                        return <option 
+                            value={list.id} 
+                            selected={list.default} 
+                            key={list.id}>
+                            {list.title}</option>
                     })
                 }
             </select>
