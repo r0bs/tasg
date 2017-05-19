@@ -23,10 +23,4 @@ class AddTaskContainer extends Component{
   }
 }
 
-// const mapDispatchToProps = (dispatch) => ({
-//   submitTask: (title, date) => {
-//     dispatch(addTodo(title, date))
-//   }
-// })
-
 export default connect()(AddTaskContainer)
