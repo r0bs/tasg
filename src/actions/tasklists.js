@@ -51,7 +51,6 @@ export function requestTasklists() {
 }
 
 export function receiveTasklists(tasklists) {
-  console.log("tasklists: ", tasklists)
   return {
     type: RECEIVE_TASKLISTS,
     tasklists

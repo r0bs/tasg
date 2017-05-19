@@ -163,7 +163,6 @@ export function changeTask(taskId, prop, value, tasklist) {
         completed: null
     }).then(()=> {
       //dispatch event to remove flag and update view
-      console.log(!getState().server.loginStatus.isLoggedIn)
       dispatch(processTaskUpdateResponse(taskId, prop, value))
     })
 
