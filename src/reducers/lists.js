@@ -3,6 +3,7 @@ import { RECEIVE_TASKLISTS,
     ADD_TASK_LIST, 
     PROCESS_TASKLIST_CREATION_RESPONSE 
 } from '../actions/tasklists'
+import { LOGGED_OUT } from '../actions/google'
 
 const list = (state, action) => {
   switch (action.type) {
@@ -36,7 +37,9 @@ const list = (state, action) => {
   }
 }
 
-const tasklists = (state = [{id: "localtemplist", default: true}], action) => {
+const initialTasklistStateArray = [{id: "localtemplist", default: true, title: "Ephemeral Tasklist"}]
+
+const tasklists = (state = initialTasklistStateArray, action) => {
     switch (action.type) {
         case ADD_TASK_LIST:
             return [
@@ -52,6 +55,8 @@ const tasklists = (state = [{id: "localtemplist", default: true}], action) => {
             return [
                 ...action.tasklists
             ]
+        case LOGGED_OUT: 
+            return initialTasklistStateArray
         default:
             return state
     }

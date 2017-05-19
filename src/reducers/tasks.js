@@ -6,6 +6,7 @@ import {
   PROCESS_TASK_UPDATE_RESPONSE,
   CHANGE_TODO
  } from '../actions/tasks'
+ import { LOGGED_OUT } from '../actions/google'
  import { SET_DEFAULT_LIST } from '../actions/tasklists'
 
 const todo = (state, action) => {
@@ -61,6 +62,7 @@ const tasks = (state = [], action) => {
         ...state,
         todo(undefined, action)
       ]
+    case LOGGED_OUT:
     case SET_DEFAULT_LIST:
       return []
     case PROCESS_TASK_CREATION_RESPONSE:
