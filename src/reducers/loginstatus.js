@@ -9,7 +9,7 @@ import {
 import {
     REQUEST_TASKS,
     RECEIVE_TASKS,
-    CHANGE_TODO, 
+    CHANGE_TASK, 
     PROCESS_TASK_CREATION_RESPONSE,
     PROCESS_TASK_UPDATE_RESPONSE
 } from '../actions/tasks'
@@ -46,7 +46,7 @@ const loginStatus = (state = defaultLoginStatusObject, action) => {
 
 const isFetching = (state = false, action) => {
     switch(action.type) {
-        case CHANGE_TODO:
+        case CHANGE_TASK:
         case REQUEST_TASKS:
             return true
         case PROCESS_TASK_UPDATE_RESPONSE:

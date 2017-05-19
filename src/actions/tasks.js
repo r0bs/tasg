@@ -1,16 +1,16 @@
 
 const gapi = window.gapi
 
-let nextTodoId = 0
+let nextTaskId = 0
 
 export const REQUEST_TASKS = "REQUEST_TASKS"
 export const RECEIVE_TASKS = "RECEIVE_TASKS"
 
-export const ADD_TODO = "ADD_TODO"
-export const TOGGLE_TODO = "TOGGLE_TODO"
+export const ADD_TASK = "ADD_TASK"
+export const TOGGLE_TASK = "TOGGLE_TASK"
 
 export const EDIT_TASK = "EDIT_TASK"
-export const CHANGE_TODO = "CHANGE_TODO"
+export const CHANGE_TASK = "CHANGE_TASK"
 
 export const PROCESS_TASK_CREATION_RESPONSE = "PROCESS_TASK_CREATION_RESPONSE"
 export const PROCESS_TASK_UPDATE_RESPONSE = "PROCESS_TASK_UPDATE_RESPONSE"
@@ -52,9 +52,9 @@ export function getTasks(tasklist) {
 
 //CREATION
 
-export function addTodoToList(id, title, due) {
+export function addTaskToList(id, title, due) {
   return {
-    type: ADD_TODO,
+    type: ADD_TASK,
     id,
     status: "needsAction",
     title,
@@ -74,16 +74,16 @@ export function processTaskCreationResponse(tempId, permanentId) {
 
 //CREATION ASYNC
 
-export function addTodo(title, date, tasklist) {
+export function addTask(title, date, tasklist) {
   
   return (dispatch, getState) => {
 
     tasklist = !tasklist ? getState().tasklists.find(l => l.default).id : tasklist
 
-    const tempId = "NEWTASK"+nextTodoId++;
+    const tempId = "NEWTASK"+nextTaskId++;
     const due = date.format("YYYY-MM-DD") + "T00:00:00.000Z";
 
-    dispatch(addTodoToList(tempId, title, due))
+    dispatch(addTaskToList(tempId, title, due))
 
     // this is an ungly hack! checks wether user is signed in to google
     // if not, dispatches task update action as if server repsponded
@@ -112,14 +112,14 @@ export function addTodo(title, date, tasklist) {
 //UPDATING
 
 
-export const toggleTodo = (id) => ({
-  type: TOGGLE_TODO,
+export const toggleTask = (id) => ({
+  type: TOGGLE_TASK,
   id
 })
 
-export function editTodoInList(taskId, prop, value) {
+export function editTaskInList(taskId, prop, value) {
   return {
-    type: CHANGE_TODO,
+    type: CHANGE_TASK,
     id: taskId,
     [prop]: value,
     syncInProgress: true
@@ -146,7 +146,7 @@ export function changeTask(taskId, prop, value, tasklist) {
       value = value.format("YYYY-MM-DD") + "T00:00:00.000Z";
     }
     //dispatch event to add flag for in edit
-    dispatch(editTodoInList(taskId, prop, value))
+    dispatch(editTaskInList(taskId, prop, value))
 
     // this is an ungly hack! checks wether user is signed in to google
     // if not, dispatches task update action as if server repsponded

@@ -1,22 +1,22 @@
 import {
-  ADD_TODO, 
-  TOGGLE_TODO, 
+  ADD_TASK, 
+  TOGGLE_TASK, 
   RECEIVE_TASKS, 
   PROCESS_TASK_CREATION_RESPONSE, 
   PROCESS_TASK_UPDATE_RESPONSE,
-  CHANGE_TODO
+  CHANGE_TASK
  } from '../actions/tasks'
  import { LOGGED_OUT } from '../actions/google'
  import { SET_DEFAULT_LIST } from '../actions/tasklists'
 
-const todo = (state, action) => {
+const task = (state, action) => {
   switch (action.type) {
-    case ADD_TODO:
+    case ADD_TASK:
       return {
         ...state,
         ...action
       }
-    case CHANGE_TODO:
+    case CHANGE_TASK:
       if (state.id !== action.id) {
           return state
         }
@@ -42,7 +42,7 @@ const todo = (state, action) => {
         ...action,
         syncInProgress: false
       }
-    case TOGGLE_TODO:
+    case TOGGLE_TASK:
       if (state.id !== action.id) {
         return state
       }
@@ -57,20 +57,20 @@ const todo = (state, action) => {
 
 const tasks = (state = [], action) => {
   switch (action.type) {
-    case ADD_TODO:
+    case ADD_TASK:
       return [
         ...state,
-        todo(undefined, action)
+        task(undefined, action)
       ]
     case LOGGED_OUT:
     case SET_DEFAULT_LIST:
       return []
     case PROCESS_TASK_CREATION_RESPONSE:
     case PROCESS_TASK_UPDATE_RESPONSE:
-    case TOGGLE_TODO:
-    case CHANGE_TODO:
+    case TOGGLE_TASK:
+    case CHANGE_TASK:
       return state.map(t =>
-        todo(t, action)
+        task(t, action)
       )
     case RECEIVE_TASKS:
       return [

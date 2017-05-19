@@ -45,7 +45,7 @@ class AddTask extends Component {
                     onChange={(choosendate) => this.handleDateChange(choosendate)}
                 />
                 <button type="submit">
-                    Add Todo
+                    Add Task
                 </button>
             </form>
         )

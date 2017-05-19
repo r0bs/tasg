@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import DateSection from './DateSection'
 
-class TodoList extends Component{
+class TaskList extends Component{
 
   getTaskDate(val) {
     return val.due
@@ -40,7 +40,7 @@ class TodoList extends Component{
 
 }
 
-TodoList.propTypes = {
+TaskList.propTypes = {
   tasks: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.isRequired,
     status: PropTypes.string.isRequired,
@@ -49,4 +49,4 @@ TodoList.propTypes = {
   }).isRequired).isRequired
 }
 
-export default TodoList
+export default TaskList

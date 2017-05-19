@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { setDefaultTaskList, addTasklist } from '../actions/tasklists'
 import TaskListsDropDown from '../components/TaskListsDropDown'
-import AddTasklist from '../components/AddTasklist'
+import AddList from '../components/AddList'
 
 class Tasklists extends Component {
 
@@ -10,7 +10,7 @@ class Tasklists extends Component {
     return (
       <div>
         <TaskListsDropDown selectDefaultList={this.props.selectDefaultList} tasklists={this.props.tasklists} />
-        <AddTasklist addTasklist={this.props.addTasklist} />
+        <AddList addTasklist={this.props.addTasklist} />
       </div>
     )
   }

@@ -2,10 +2,10 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { changeTask } from '../actions/tasks'
 import { laodGoogleClientAsync } from '../actions/google'
-import TodoList from '../components/TodoList'
+import TaskList from '../components/TaskList'
 
 
-class VisibleTodoList extends Component {
+class VisibleTaskList extends Component {
 
   constructor(props) {
     super(props)
@@ -21,14 +21,14 @@ class VisibleTodoList extends Component {
     const {tasks} = this.props;
     return (
       <div>
-        <TodoList tasks={tasks} taskChange={this.taskChange.bind(this)} />
+        <TaskList tasks={tasks} taskChange={this.taskChange.bind(this)} />
       </div>
     )
   }
 
 }
 
-const getVisibleTodos = function(tasks, filter) {
+const getVisibleTasks = function(tasks, filter) {
     switch (filter) {
       case 'SHOW_ALL':
         return tasks
@@ -44,8 +44,8 @@ const getVisibleTodos = function(tasks, filter) {
 
 const mapStateToProps = (state) => ({
   server: state.server,
-  tasks: getVisibleTodos(state.tasks, state.visibilityFilter)
+  tasks: getVisibleTasks(state.tasks, state.visibilityFilter)
 })
 
 
-export default connect(mapStateToProps)(VisibleTodoList)
+export default connect(mapStateToProps)(VisibleTaskList)

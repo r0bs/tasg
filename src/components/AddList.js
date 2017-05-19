@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 
-export default class AddTasklist extends Component {
+export default class AddList extends Component {
 
     submitNewTasklistForm(e) {
         e.preventDefault()
@@ -20,6 +20,9 @@ export default class AddTasklist extends Component {
                     <input ref={node => {
                         this.input = node
                     }} />
+                    <button type="submit">
+                        Add List
+                    </button>
                 </form>
             </div>
         )
@@ -27,6 +30,6 @@ export default class AddTasklist extends Component {
 
 }
 
-AddTasklist.PropTypes = {
+AddList.PropTypes = {
     addTasklist: PropTypes.func.isRequired
 }

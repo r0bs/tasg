@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { addTodo } from '../actions/tasks'
+import { addTask } from '../actions/tasks'
 import AddTask from '../components/AddTask'
 
 class AddTaskContainer extends Component{
@@ -11,7 +11,7 @@ class AddTaskContainer extends Component{
   }
 
   submitTask(title, date) {
-    this.props.dispatch(addTodo(title, date))
+    this.props.dispatch(addTask(title, date))
   }
 
   render() {

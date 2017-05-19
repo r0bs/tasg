@@ -2,7 +2,7 @@ import { getTasks } from './tasks'
 
 const gapi = window.gapi
 
-let nextTodoListId = 0
+let nextTaskListId = 0
 
 export const REQUEST_TASKLISTS = "REQUEST_TASKLISTS"
 export const RECEIVE_TASKLISTS = "RECEIVE_TASKLISTS"
@@ -60,7 +60,7 @@ export function receiveTasklists(tasklists) {
 export function addTasklist(title) {
   return(dispatch) => {
 
-    const tempId = "NEWTASKLIST"+nextTodoListId++;
+    const tempId = "NEWTASKLIST"+nextTaskListId++;
     
     //add new tasklist to list of tasklists
     dispatch(addTaskListActionCreator(tempId, title))
