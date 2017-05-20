@@ -1,0 +1,19 @@
+{
+  "name": "taskinator-theme",
+  "version": "1.0.0",
+  "description": "theme for taskinator",
+  "main": "index.js",
+  "scripts": {
+    "build": "lessc index.less build/index.css",
+    "start": "npm-watch"
+  },
+   "watch": {
+    "build": "index.less"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "less": "^2.7.2"
+  }
+}

@@ -7,18 +7,22 @@ import VisibleLoginButton from '../containers/VisibleLoginButton'
 import Tasklists from '../containers/Tasklists'
 
 const App = () => (
-  <div>
-    <h3>Login</h3>
-    <VisibleLoginButton />
-    <h3>Add Tasks</h3>
-    <AddTaskContainer />
-    <h3>Lists</h3>
-    <Tasklists />
-    <h3>Filter & Suche</h3>
-    <Filter />
-    <Search />
-    <h3>Tasks</h3>
-    <VisibleTaskList />
+  <div className="container-fluid">
+    <div className="row">
+
+      <div className="sidebar">
+        <VisibleLoginButton />
+        <Filter />
+        <Search />
+        <Tasklists />
+      </div>
+
+      <div className="main">
+        <AddTaskContainer />
+        <VisibleTaskList />
+      </div>
+
+    </div>
   </div>
 )
 

@@ -13,10 +13,14 @@ export default class LoginButton extends Component {
     }
 
     render() {
-        const ButtonText = this.props.server.isLoggedIn ? "Log Out" : "Log In"
+        const ButtonText = this.props.server.isLoggedIn ? "Logout" : "Login with Google"
 
         return(
             <button
+                type="button"
+                className={
+                    this.props.server.isLoggedIn ? "btn" : "btn btn-primary"
+                }
                 onClick={this.onButtonClick.bind(this)}>
                 {ButtonText}
             </button>

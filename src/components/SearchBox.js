@@ -1,15 +1,22 @@
 import React from 'react'
 import { PropTypes } from 'prop-types'
 
-const SearchBox = ({onInput}) => {
+const SearchBox = ({ onInput }) => {
   return (
-    <form>
-      <input type="text" onChange={e => {
-          e.preventDefault()
-          onInput(e.target.value)
-        }}/>
-    </form>
-  )}
+    <div>
+      <h4><span className="glyphicon glyphicon-search"></span>  Search</h4>
+      <form>
+        <input
+          className="form-control searchinput"
+          placeholder="Instant Search"
+          type="text" onChange={e => {
+            e.preventDefault()
+            onInput(e.target.value)
+          }} />
+      </form>
+    </div>
+  )
+}
 
 SearchBox.propTypes = {
   onInput: PropTypes.func.isRequired

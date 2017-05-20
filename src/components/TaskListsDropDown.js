@@ -11,6 +11,7 @@ export default class TaskListsDropDown extends Component {
     render() {
         return(
             <select 
+                className="form-control"
                 onChange={this.handleSelect.bind(this)} 
                 defaultValue={this.props.tasklists.find(l => l.default)} >
                 {

@@ -10,11 +10,10 @@ class CalendarButton extends Component {
 
     render() {
         return (
-            <button
-                className="example-custom-input"
+            <span
+                className="glyphicon glyphicon-calendar"
                 onClick={this.props.onClick}>
-                Select Date
-            </button>
+            </span>
         )
     }
 }

@@ -1,0 +1,108 @@
+// the main bootstrap file
+@import "./node_modules/bootstrap/less/bootstrap";
+// necessary to avoid compilation error
+@icon-font-path: "../node_modules/bootstrap/fonts/";
+// customizations
+
+.sidebar {
+    padding: 15px;
+    text-align: left;
+    position: fixed;
+    overflow: scroll;
+    height: 100%;
+    width: 260px;
+    background-color: #f7f7f7;
+
+    .filter {
+        cursor: pointer;
+    }
+
+    h4 {
+        margin-top: 30px;
+    }
+    .searchinput {
+        text-align: center;
+        background-color: #fcfcfc;
+        ::-webkit-input-placeholder {
+            text-align: center;
+        }
+
+        :-moz-placeholder { /* Firefox 18- */
+            text-align: center;  
+        }
+
+        ::-moz-placeholder {  /* Firefox 19+ */
+            text-align: center;  
+        }
+
+        :-ms-input-placeholder {  
+            text-align: center; 
+        }
+    }
+}
+
+
+.main {
+    background-color: #fff;
+    margin-left: 260px;
+    width: auto;
+    position: relative;
+
+    .addTask {
+        text-align: left;
+        display: block;
+        padding: 15px;
+        width: 100%;
+        position: fixed;
+        background-color: #fff;
+        
+        .tasktitleinput {
+            min-width: 30%;
+        }
+    }
+
+    .datearea {
+        padding-top: 30px;
+        margin-bottom: 20px;
+
+        .day {
+            display: inline-block;
+            margin: 0;
+            font-size: 2.1em;
+            font-weight: bold;
+            color: #2e2e2e;
+            text-align: right;
+            width: 7%;
+        }
+
+        .date {
+            width: 80%;
+            display: inline-block;
+            color: #c1c1c1;
+            border-top: 1px solid #c1c1c1;
+            font-weight: bold;
+            margin: 10px 0 0 10px;
+            font-size: 1.2em;
+        }
+    }
+    .tasklist {
+        padding-top: 50px;
+
+        .todo {
+            border: 1px solid #fcfcfc;
+        }
+
+        ul {
+            .task {
+                border-radius: 3px;
+                padding: 3px;
+            }
+            .completed {
+                border: 1px solid #f7f7f7;
+                background-color: #f9f9f9;
+            }
+        }
+
+    }
+}
+

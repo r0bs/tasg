@@ -20,9 +20,7 @@ class VisibleTaskList extends Component {
   render() {
     const {tasks} = this.props;
     return (
-      <div>
         <TaskList tasks={tasks} taskChange={this.taskChange.bind(this)} />
-      </div>
     )
   }
 

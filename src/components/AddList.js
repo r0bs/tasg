@@ -16,12 +16,14 @@ export default class AddList extends Component {
     render() {
         return(
             <div>
-                <form onSubmit={(e) => this.submitNewTasklistForm(e)}>
-                    <input ref={node => {
+                <form className="form-inline" onSubmit={(e) => this.submitNewTasklistForm(e)}>
+                    <input
+                        className="form-control"
+                        ref={node => {
                         this.input = node
                     }} />
-                    <button type="submit">
-                        Add List
+                    <button className="btn" type="submit">
+                        <span className="glyphicon glyphicon-plus"></span>
                     </button>
                 </form>
             </div>

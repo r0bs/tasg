@@ -13,11 +13,11 @@ class DateSection extends Component {
   makeMoment(date) {
     return moment(date, moment.ISO_8601).calendar(null, {
         sameDay: '[Today]',
-        nextDay: '[Tomorrow (]dddd, MMMM Do YYYY[)]',
-        nextWeek: '[Next] dddd, MMMM Do YYYY',
-        lastDay: '[Yesterday (]dddd, MMMM Do YYYY[)]',
-        lastWeek: '[Last] dddd, MMMM Do YYYY',
-        sameElse: 'dddd, MMMM Do YYYY'
+        nextDay: '[Tomorrow]',
+        nextWeek: 'MMMM YYYY, [Next] dddd',
+        lastDay: '[Yesterday]',
+        lastWeek: 'MMMM YYYY, [Last] dddd',
+        sameElse: 'MMMM YYYY, dddd'
     })
   }
 
@@ -34,7 +34,10 @@ class DateSection extends Component {
   render() {
     return (
         <DropableDiv onDrop={this.onDrop.bind(this)} >
-            <h3 className="Date">{this.props.date == null ? "No Due Date" : this.makeMoment(this.props.date)}</h3>
+            <div className="row datearea">
+                <div className="day">{this.props.date == null ? "0" : moment(this.props.date, moment.ISO_8601).format("D")}</div>
+                <div className="date">{this.props.date == null ? "No Due Date" : this.makeMoment(this.props.date)}</div>
+            </div>
             <ul>
                 {this.props.tasks.map(task =>
                     <Task
@@ -50,3 +53,6 @@ class DateSection extends Component {
 
 }
 export default DateSection;
+
+
+//            <h3 className="Date">{this.props.date == null ? "No Due Date" : this.makeMoment(this.props.date)}</h3>

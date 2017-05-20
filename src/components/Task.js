@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import { RIEInput } from 'riek'
 import DatePicker from 'react-datepicker'
+import BDatePicker from 'react-bootstrap-date-picker'
 import CalendarButton from './CalendarButton'
 import moment from 'moment'
 
@@ -39,8 +40,11 @@ class Task extends Component {
       <li
         ref={node => this.li = node } 
         style={{
-          listStyleType: 'none'
+          listStyleType: 'none',
         }}
+        className={
+          status !== "needsAction" ? "task completed": "task todo"
+        }
         draggable="true"
         onDragStart={e => {
           e.dataTransfer.setData("id", id)
@@ -48,29 +52,26 @@ class Task extends Component {
           }
         }
         >
-        <span>:::</span>
         <input type="checkbox"
           checked={status === "completed" ? "checked" : ""}
           onChange={this.checked.bind(this)}
+          style={{
+            margin: "3px",
+            marginRight: "7px"
+          }}
         />
         <span 
           style={{
-            textDecoration: status !== "needsAction" ? 'line-through' : 'none',
             fontStyle: syncInProgress ? "italic" : "normal",
-            color: syncInProgress ? "grey" : "black"
-          }}>
+            color: status !== "needsAction"  ? "grey" : "black"
+          }}>  
             <RIEInput
               value={title}
               change={this.titleChange.bind(this)}
               propName="value"
             />
         </span>
-        <DatePicker
-          dateFormat="YYYY-MM-DD"
-          customInput={<CalendarButton />}
-          selected={moment(due)}
-          onChange={this.dateChange.bind(this)}
-        />
+        
       </li>
     )
   }
@@ -82,3 +83,11 @@ Task.propTypes = {
 }
 
 export default Task
+
+
+// <DatePicker
+//           dateFormat="YYYY-MM-DD"
+//           customInput={<CalendarButton />}
+//           selected={moment(due)}
+//           onChange={this.dateChange.bind(this)}
+//         />

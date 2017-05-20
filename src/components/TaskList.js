@@ -1,8 +1,8 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import DateSection from './DateSection'
 
-class TaskList extends Component{
+class TaskList extends Component {
 
   getTaskDate(val) {
     return val.due
@@ -15,26 +15,28 @@ class TaskList extends Component{
 
   sortTasksByDate(tasks) {
 
-      return tasks
-        .map(this.getTaskDate)
-        .reduce(this.distinctDate, [])
-        .sort()
-        .map((duedate, index)=>{
-          return <DateSection 
-                  taskChange={this.props.taskChange}
-                  key={index} 
-                  date={duedate} 
-                  tasks={tasks.filter(task => task.due === duedate)}
-                  />;
-        })
+    return tasks
+      .map(this.getTaskDate)
+      .reduce(this.distinctDate, [])
+      .sort()
+      .map((duedate, index) => {
+        return <DateSection
+          taskChange={this.props.taskChange}
+          key={index}
+          date={duedate}
+          tasks={tasks.filter(task => task.due === duedate)}
+        />;
+      })
 
   }
 
   render() {
-    return(
-      <ul>
-      {this.sortTasksByDate(this.props.tasks)}
-    </ul>
+    return (
+      <div className="tasklist">
+        <ul>
+          {this.sortTasksByDate(this.props.tasks)}
+        </ul>
+      </div>
     )
   }
 

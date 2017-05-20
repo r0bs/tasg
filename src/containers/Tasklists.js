@@ -1,18 +1,25 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { setDefaultTaskList, addTasklist } from '../actions/tasklists'
-import TaskListsDropDown from '../components/TaskListsDropDown'
+import TaskListsList from '../components/TaskListsList'
 import AddList from '../components/AddList'
 
 class Tasklists extends Component {
 
   render() {
-    return (
-      <div>
-        <TaskListsDropDown selectDefaultList={this.props.selectDefaultList} tasklists={this.props.tasklists} />
-        <AddList addTasklist={this.props.addTasklist} />
-      </div>
-    )
+
+    if(this.props.isLoggedIn) {
+      return (
+        <div>
+          <h4><span className="glyphicon glyphicon-list"></span>  Lists</h4>
+          <AddList addTasklist={this.props.addTasklist} />
+          <TaskListsList selectDefaultList={this.props.selectDefaultList} tasklists={this.props.tasklists} />
+        </div>
+      )
+    } else {
+      return null
+    }
+    
   }
 
 }
@@ -27,7 +34,8 @@ const mapDispatchToProps = (dispatch) => ({
 })
 
 const mapStateToProps = (state) => ({
-  tasklists: state.tasklists
+  tasklists: state.tasklists,
+  isLoggedIn: state.server.loginStatus.isLoggedIn
 })
 
 export default connect(mapStateToProps,mapDispatchToProps)(Tasklists)
