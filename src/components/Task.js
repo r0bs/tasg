@@ -9,6 +9,14 @@ import 'react-datepicker/dist/react-datepicker.css';
 
 class Task extends Component {
 
+  componentDidMount() {
+    // check if element is newly created
+    if(this.props.syncInProgress) {
+      // only then scroll it into view
+        this.li.scrollIntoViewIfNeeded()
+    }
+  }
+
   titleChange(newTitle) {
     this.props.taskChange(this.props.id, "title", newTitle.value)
   }
@@ -29,6 +37,7 @@ class Task extends Component {
 
     return(
       <li
+        ref={node => this.li = node } 
         style={{
           listStyleType: 'none'
         }}
