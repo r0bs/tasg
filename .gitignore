@@ -9,6 +9,7 @@
 
 # production
 /build
+/theme/build
 
 # misc
 .DS_Store
