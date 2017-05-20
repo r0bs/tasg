@@ -8,6 +8,7 @@ import {
  } from '../actions/tasks'
  import { LOGGED_OUT } from '../actions/google'
  import { SET_DEFAULT_LIST } from '../actions/tasklists'
+ import { APPLY_SEARCH } from '../actions/filter'
 
 const task = (state, action) => {
   switch (action.type) {

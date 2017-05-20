@@ -1,4 +1,4 @@
-import SET_VISIBILITY_FILTER from '../actions/tasklists'
+import {SET_VISIBILITY_FILTER} from '../actions/filter'
 
 const visibilityFilter = (state = 'SHOW_ALL', action) => {
   switch (action.type) {

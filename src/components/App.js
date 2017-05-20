@@ -1,5 +1,6 @@
 import React from 'react'
 import Filter from './Filter'
+import Search from '../containers/Search'
 import AddTaskContainer from '../containers/AddTaskContainer'
 import VisibleTaskList from '../containers/VisibleTaskList'
 import VisibleLoginButton from '../containers/VisibleLoginButton'
@@ -15,6 +16,7 @@ const App = () => (
     <Tasklists />
     <h3>Filter & Suche</h3>
     <Filter />
+    <Search />
     <h3>Tasks</h3>
     <VisibleTaskList />
   </div>

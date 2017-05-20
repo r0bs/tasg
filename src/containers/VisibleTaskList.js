@@ -28,7 +28,15 @@ class VisibleTaskList extends Component {
 
 }
 
-const getVisibleTasks = function(tasks, filter) {
+const getSearchedTasks = function(tasks, searchterm) {
+  return tasks.filter(t => { 
+    if(t.title.indexOf(searchterm) !== -1) {
+      return t
+    } 
+  })
+}
+
+const getStatusFilteredTasks = function(tasks, filter) {
     switch (filter) {
       case 'SHOW_ALL':
         return tasks
@@ -44,7 +52,7 @@ const getVisibleTasks = function(tasks, filter) {
 
 const mapStateToProps = (state) => ({
   server: state.server,
-  tasks: getVisibleTasks(state.tasks, state.visibilityFilter)
+  tasks: getStatusFilteredTasks(getSearchedTasks(state.tasks, state.search), state.visibilityFilter)
 })
 
 
