@@ -29,11 +29,9 @@ class VisibleTaskList extends Component {
 }
 
 const getSearchedTasks = function(tasks, searchterm) {
-  return tasks.filter(t => { 
-    if(t.title.indexOf(searchterm) !== -1) {
-      return t
-    } 
-  })
+  return tasks.filter(t => 
+       (t.title || t.description).toLowerCase().indexOf(searchterm.toLowerCase()) !== -1
+  )
 }
 
 const getStatusFilteredTasks = function(tasks, filter) {
