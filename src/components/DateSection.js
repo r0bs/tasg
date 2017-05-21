@@ -35,8 +35,14 @@ class DateSection extends Component {
     return (
         <DropableDiv onDrop={this.onDrop.bind(this)} >
             <div className="row datearea">
-                <div className="day">{this.props.date == null ? "0" : moment(this.props.date, moment.ISO_8601).format("D")}</div>
-                <div className="date">{this.props.date == null ? "No Due Date" : this.makeMoment(this.props.date)}</div>
+                <div className="day">
+                    {this.props.date == null ? "0" : moment(this.props.date, moment.ISO_8601).format("D")}
+                </div>
+                <div className={
+                    moment(this.props.date, moment.ISO_8601).isSame(moment(),"d") ? "date today" : "date"
+                }>
+                    {this.props.date == null ? "No Due Date" : this.makeMoment(this.props.date)}
+                </div>
             </div>
             <ul>
                 {this.props.tasks.map(task =>
