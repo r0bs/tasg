@@ -1,3 +1,4 @@
+import "babel-polyfill"
 
 const gapi = window.gapi
 

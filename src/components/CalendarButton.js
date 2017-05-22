@@ -9,11 +9,20 @@ class CalendarButton extends Component {
     }
 
     render() {
+
+        const {
+            value,
+            placeholder,
+            ...rest,
+            } = this.props;
+
         return (
-            <span
-                className="glyphicon glyphicon-calendar"
-                onClick={this.props.onClick}>
-            </span>
+            <input type="button"
+                {...rest}
+                className="form-control"
+                value={value}
+                >
+            </input>
         )
     }
 }

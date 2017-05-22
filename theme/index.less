@@ -5,14 +5,19 @@
 // customizations
 
 .sidebar {
-    padding: 15px;
     text-align: left;
-    position: fixed;
-    overflow: scroll;
-    height: 100%;
-    width: 260px;
     background-color: #f7f7f7;
+    display: none;
 
+     @media (min-width: 768px) {
+        position: fixed;
+        overflow: scroll;
+        height: 100%;
+        width: 260px;
+        padding: 15px;
+        display: block;
+     }
+     
     .filter {
         cursor: pointer;
     }
@@ -44,60 +49,81 @@
 
 .main {
     background-color: #fff;
-    margin-left: 260px;
     width: auto;
     position: relative;
+    @media (min-width: 768px) {
+        margin-left: 260px;
+     }
 
     .addTask {
-        text-align: left;
-        display: block;
+        text-align: center;
         padding: 15px;
         width: 100%;
         position: fixed;
+        overflow: hidden;
         background-color: #fff;
+        border-radius: 4px;
+
+        .form-inline {
+            input, button, span.input-group {
+                float: left;
+                border-radius: 4px;
+                margin: 0 2px 0 0;
+            }
+        }
         
         .tasktitleinput {
-            min-width: 30%;
+            width: auto;
+            //min-width: 30%;
         }
     }
 
-    .datearea {
-        padding-top: 30px;
-        margin-bottom: 20px;
-
-        .day {
-            display: inline-block;
-            margin: 0;
-            font-size: 2.1em;
-            font-weight: bold;
-            color: #2e2e2e;
-            text-align: right;
-            width: 7%;
-        }
-
-        .date {
-            width: 80%;
-            display: inline-block;
-            color: #c1c1c1;
-            border-top: 1.5px solid #c1c1c1;
-            font-weight: bold;
-            margin: 10px 0 0 10px;
-            font-size: 1.2em;
-        }
-
-        .today{
-            border-top: 1.5px solid #337ab7;
-            color: #337ab7;
-        }
-    }
     .tasklist {
         padding-top: 50px;
+
+         .datearea {
+            padding-top: 30px;
+            margin-bottom: 20px;
+
+            .day {
+                display: inline-block;
+                margin: 0;
+                font-size: 2.1em;
+                font-weight: bold;
+                color: #2e2e2e;
+                text-align: right;
+                width: 7%;
+            }
+
+            .date {
+                width: 80%;
+                display: inline-block;
+                color: #c1c1c1;
+                border-top: 1.5px solid #c1c1c1;
+                font-weight: bold;
+                margin: 10px 0 0 10px;
+                font-size: 1.2em;
+            }
+
+            .today{
+                border-top: 1.5px solid #337ab7;
+                color: #337ab7;
+            }
+        }
 
         .todo {
             border: 1px solid #fcfcfc;
         }
 
         ul {
+            ul {
+                @media (max-width: 768px) {
+                padding-left: 0;
+                }    
+            }        
+            li {
+                width: 90%;
+            }
             .task {
                 border-radius: 3px;
                 padding: 3px;

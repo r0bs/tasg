@@ -3,6 +3,8 @@ import PropTypes from 'prop-types'
 import DatePicker from 'react-datepicker'
 import moment from 'moment';
 import BDatePicker from 'react-bootstrap-date-picker'
+import CalendarButton from './CalendarButton'
+
 
 import 'react-datepicker/dist/react-datepicker.css';
 
@@ -44,13 +46,14 @@ class AddTask extends Component {
                         placeholder="Buy Milk"
                     />
                     <BDatePicker
-                        className="form-control"
+                        customControl={<CalendarButton />}
+                        calendarContainer={document.body}
                         value={this.state.date}
                         onChange={(choosendate) => this.handleDateChange(choosendate)}
                     />
 
                     <button type="submit" className="btn btn-default">
-                        Add Task
+                        <span className="glyphicon glyphicon-plus"></span>
                 </button>
                 </form>
             </div>

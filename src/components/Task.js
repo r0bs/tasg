@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import { RIEInput } from 'riek'
 import DatePicker from 'react-datepicker'
 import BDatePicker from 'react-bootstrap-date-picker'
-import CalendarButton from './CalendarButton'
 import moment from 'moment'
 
 import 'react-datepicker/dist/react-datepicker.css';
@@ -83,11 +82,3 @@ Task.propTypes = {
 }
 
 export default Task
-
-
-// <DatePicker
-//           dateFormat="YYYY-MM-DD"
-//           customInput={<CalendarButton />}
-//           selected={moment(due)}
-//           onChange={this.dateChange.bind(this)}
-//         />

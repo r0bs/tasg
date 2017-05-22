@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import 'core-js/fn/array/find'
 
 
 export default class TaskListsDropDown extends Component {
