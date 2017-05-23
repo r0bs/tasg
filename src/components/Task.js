@@ -1,11 +1,6 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import { RIEInput } from 'riek'
-import DatePicker from 'react-datepicker'
-import BDatePicker from 'react-bootstrap-date-picker'
-import moment from 'moment'
-
-import 'react-datepicker/dist/react-datepicker.css';
 
 class Task extends Component {
 

@@ -1,12 +1,9 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import DatePicker from 'react-datepicker'
 import moment from 'moment';
-import BDatePicker from 'react-bootstrap-date-picker'
-import CalendarButton from './CalendarButton'
+import Flatpickr from 'react-flatpickr'
 
-
-import 'react-datepicker/dist/react-datepicker.css';
+import 'taskinator-theme/flatpickr.min.css'
 
 class AddTask extends Component {
 
@@ -30,6 +27,7 @@ class AddTask extends Component {
 
 
     handleDateChange(date) {
+        console.warn("datum ", date, moment(date, "EEE MMM dd HH:mm:ss zzz yyyy"))
         this.setState({
             date: date
         });
@@ -45,13 +43,14 @@ class AddTask extends Component {
                         className="form-control tasktitleinput"
                         placeholder="Buy Milk"
                     />
-                    <BDatePicker
-                        customControl={<CalendarButton />}
-                        calendarContainer={document.body}
-                        value={this.state.date}
-                        onChange={(choosendate) => this.handleDateChange(choosendate)}
-                    />
-
+                    <Flatpickr 
+                        onChange={(choosendate) => this.handleDateChange(choosendate)} 
+                        className="form-control"
+                        options={{
+                            defaultDate: moment().format("YYYY-MM-DD"),
+                            dateFormat: "Y-m-d"
+                        }}
+                        />
                     <button type="submit" className="btn btn-default">
                         <span className="glyphicon glyphicon-plus"></span>
                 </button>
@@ -68,12 +67,3 @@ AddTask.PropTypes = {
 }
 
 export default AddTask
-
-
-
-// <DatePicker
-//     className="form-control"
-//     dateFormat="YYYY-MM-DD"
-//     selected={this.state.date}
-//     onChange={(choosendate) => this.handleDateChange(choosendate)}
-// />

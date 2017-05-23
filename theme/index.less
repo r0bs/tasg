@@ -6,8 +6,9 @@
 
 .sidebar {
     text-align: left;
-    background-color: #f7f7f7;
+    background-color: #e6e6e6;
     display: none;
+    box-sizing: border-box;
 
      @media (min-width: 768px) {
         position: fixed;
@@ -24,6 +25,7 @@
 
     h4 {
         margin-top: 30px;
+        color: #3d4248;
     }
     .searchinput {
         text-align: center;
@@ -49,39 +51,66 @@
 
 .main {
     background-color: #fff;
-    width: auto;
-    position: relative;
+    width: 100%;
+    box-sizing: border-box;
     @media (min-width: 768px) {
         margin-left: 260px;
+        width: ~"calc(100% - 260px)";
      }
 
     .addTask {
         text-align: center;
-        padding: 15px;
-        width: 100%;
+        padding: 10px 40px;
+        position: sticky;
         position: fixed;
         overflow: hidden;
         background-color: #fff;
+        opacity: 0.95;
         border-radius: 4px;
+        width: ~"calc(100% - 260px)";
+        @media (max-width: 768px) {
+            padding: 10px;
+            width: 100%;
+        }
 
         .form-inline {
-            input, button, span.input-group {
-                float: left;
+            display: flex;
+            background-color: #fff;
+            input, input:read-only, button, span.input-group {
                 border-radius: 4px;
                 margin: 0 2px 0 0;
+                opacity: 1;
+                background-color: #fff;
+                height: 34px;
+                @media (max-width: 768px) {
+                    padding: 10px;
+                }
             }
+            .tasktitleinput {
+                flex-grow: 8;
+            }
+            .flatpickr-input {
+                flex-grow: 3;
+            }
+            button {
+                flex-grow: 2;
+            }
+            input[type="date"]{
+                -webkit-appearance: textfield;
+                -moz-appearance: textfield;
+                display:flex;
+                display:-webkit-flex;
+            }
+            
         }
         
-        .tasktitleinput {
-            width: auto;
-            //min-width: 30%;
-        }
     }
 
     .tasklist {
         padding-top: 50px;
 
          .datearea {
+            width: 100%;
             padding-top: 30px;
             margin-bottom: 20px;
 
@@ -92,11 +121,11 @@
                 font-weight: bold;
                 color: #2e2e2e;
                 text-align: right;
-                width: 7%;
+                width: 50px;
             }
 
             .date {
-                width: 80%;
+                width: ~"calc(100% - 100px)";
                 display: inline-block;
                 color: #c1c1c1;
                 border-top: 1.5px solid #c1c1c1;
@@ -116,10 +145,10 @@
         }
 
         ul {
-            ul {
-                @media (max-width: 768px) {
-                padding-left: 0;
-                }    
+            @media (max-width: 768px) {
+                    padding: 10px;
+                }  
+            ul {  
             }        
             li {
                 width: 90%;
