@@ -31,9 +31,18 @@ class TaskList extends Component {
   }
 
   render() {
+    let taskcountinfo = ""
+
+    if(!this.props.tasks.length && !this.props.isFetching && !this.props.searchterm.length) {
+      taskcountinfo = <h5>There are no tasks to display! Create one by using the inputs above.</h5>
+    } else if (!this.props.tasks.length && !this.props.isFetching && this.props.searchterm.length) {
+      taskcountinfo = <h5>There are no tasks to display for your search!</h5>
+    }
+
     return (
       <div className="tasklist">
         <ul>
+          {taskcountinfo}
           {this.sortTasksByDate(this.props.tasks)}
         </ul>
       </div>
@@ -43,6 +52,8 @@ class TaskList extends Component {
 }
 
 TaskList.propTypes = {
+  isFetching: PropTypes.bool.isRequired,
+  searchterm: PropTypes.string.isRequired,
   tasks: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.isRequired,
     status: PropTypes.string.isRequired,

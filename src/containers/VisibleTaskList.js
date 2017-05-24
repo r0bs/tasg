@@ -18,9 +18,9 @@ class VisibleTaskList extends Component {
   }
 
   render() {
-    const {tasks} = this.props;
+    const {tasks, server, searchterm} = this.props;
     return (
-        <TaskList tasks={tasks} taskChange={this.taskChange.bind(this)} />
+        <TaskList tasks={tasks} searchterm={searchterm} isFetching={server.isFetching}  taskChange={this.taskChange.bind(this)} />
     )
   }
 
@@ -47,6 +47,7 @@ const getStatusFilteredTasks = function(tasks, filter) {
 
 
 const mapStateToProps = (state) => ({
+  searchterm: state.search,
   server: state.server,
   tasks: getStatusFilteredTasks(getSearchedTasks(state.tasks, state.search), state.visibilityFilter)
 })
