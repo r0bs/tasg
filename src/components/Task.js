@@ -46,9 +46,13 @@ class Task extends Component {
           }
         }
         >
+        <div className={
+          syncInProgress ? "loader": "hide"
+        }/>
         <input type="checkbox"
           checked={status === "completed" ? "checked" : ""}
           onChange={this.checked.bind(this)}
+          className={syncInProgress ? "syncInProgress" : ""}
           style={{
             margin: "3px",
             marginRight: "7px"
@@ -56,9 +60,9 @@ class Task extends Component {
         />
         <span 
           style={{
-            fontStyle: syncInProgress ? "italic" : "normal",
             color: status !== "needsAction"  ? "grey" : "black"
           }}>  
+          
             <RIEInput
               value={title}
               change={this.titleChange.bind(this)}
