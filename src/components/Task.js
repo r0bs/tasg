@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { RIEInput } from 'riek'
 import moment from 'moment';
 import Flatpickr from 'react-flatpickr'
+import 'element.scrollintoviewifneeded-polyfill'
 
 class Task extends Component {
 

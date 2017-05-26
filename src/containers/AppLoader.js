@@ -13,7 +13,9 @@ class AppLoader extends Component {
 
   render() {
 
-    if(!this.props.initialLoginStatusChecked || (this.props.isLoggedIn && !this.props.hasFetchedOnce)) {
+    if( !this.props.initialLoginStatusChecked || 
+        (this.props.isLoggedIn && !this.props.hasFetchedOnce) 
+      ) {
       return(
         <div className="appload">
           <div className="loader" />

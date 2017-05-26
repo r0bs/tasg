@@ -13,6 +13,10 @@ import {
     PROCESS_TASK_CREATION_RESPONSE,
     PROCESS_TASK_UPDATE_RESPONSE
 } from '../actions/tasks'
+import {
+    ADD_TASK_LIST,
+    PROCESS_TASKLIST_CREATION_RESPONSE
+} from '../actions/tasklists'
 
 
 const defaultLoginStatusObject = {
@@ -70,8 +74,20 @@ const isFetching = (state = false, action) => {
     }
 }
 
+const isCreatingList = (state = false, action) => {
+    switch(action.type) {
+        case ADD_TASK_LIST:
+            return true
+        case PROCESS_TASKLIST_CREATION_RESPONSE:
+            return false
+        default:
+            return state
+    }
+}
+
 export default combineReducers({
     loginStatus,
     isFetching,
+    isCreatingList,
     hasFetchedOnce
 })
