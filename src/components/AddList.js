@@ -15,14 +15,15 @@ export default class AddList extends Component {
 
     render() {
         return(
-            <div>
+            <div className="add-list">
                 <form className="form-inline" onSubmit={(e) => this.submitNewTasklistForm(e)}>
                     <input
                         className="form-control"
+                        placeholder="New List Title"
                         ref={node => {
                         this.input = node
                     }} />
-                    <button className="btn" type="submit">
+                    <button className="btn btn-default" type="submit">
                         <span className="glyphicon glyphicon-plus"></span>
                     </button>
                 </form>

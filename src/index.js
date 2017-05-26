@@ -4,7 +4,7 @@ import { createLogger } from 'redux-logger'
 import { render } from 'react-dom'
 import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
-import App from './components/App'
+import AppLoader from './containers/AppLoader'
 import reducer from './reducers'
 
 import 'bootstrap/dist/css/bootstrap.css'
@@ -23,7 +23,7 @@ const store = createStore(
 
 render(
   <Provider store={store}>
-    <App />
+    <AppLoader />
   </Provider>, 
   document.getElementById('root')
 )

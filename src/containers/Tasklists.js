@@ -8,6 +8,15 @@ class Tasklists extends Component {
 
   render() {
 
+    if(!this.props.initialLoginStatusChecked) {
+      return(
+        <div className="appload">
+          <div className="loader" />
+        </div>
+      )
+    }
+
+
     if(this.props.isLoggedIn) {
       return (
         <div>
@@ -35,7 +44,9 @@ const mapDispatchToProps = (dispatch) => ({
 
 const mapStateToProps = (state) => ({
   tasklists: state.tasklists,
-  isLoggedIn: state.server.loginStatus.isLoggedIn
+  isLoggedIn: state.server.loginStatus.isLoggedIn,
+  initialLoginStatusChecked: state.server.loginStatus.initialLoginStatusChecked
+  
 })
 
 export default connect(mapStateToProps,mapDispatchToProps)(Tasklists)

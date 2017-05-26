@@ -9,7 +9,7 @@ import Tasklists from '../containers/Tasklists'
 const App = () => (
   <div className="container-fluid">
     <div className="row">
-
+    
       <div className="sidebar">
         <VisibleLoginButton />
         <Filter />

@@ -17,7 +17,8 @@ import {
 
 const defaultLoginStatusObject = {
     isLoggedIn: false, 
-    loginInProgress: false
+    loginInProgress: false,
+    initialLoginStatusChecked: false
 }
 
 
@@ -30,18 +31,29 @@ const loginStatus = (state = defaultLoginStatusObject, action) => {
         case LOGGED_IN:
             return Object.assign({}, state, {
                 isLoggedIn: true,
-                loginInProgress: false
+                loginInProgress: false,
+                initialLoginStatusChecked: true
             })
         case NOT_LOGGED_IN:
         case LOGGED_OUT:
         case LOGIN_FAILED:
             return Object.assign({}, state, {
                 isLoggedIn: false,
-                loginInProgress: false
+                loginInProgress: false,
+                initialLoginStatusChecked: true
             })
         default:
             return state;
         }
+}
+
+const hasFetchedOnce = (state = false, action) => {
+    switch(action.type) {
+        case RECEIVE_TASKS:
+            return true
+        default:
+            return state
+    }
 }
 
 const isFetching = (state = false, action) => {
@@ -60,5 +72,6 @@ const isFetching = (state = false, action) => {
 
 export default combineReducers({
     loginStatus,
-    isFetching
+    isFetching,
+    hasFetchedOnce
 })

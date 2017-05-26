@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { changeTask } from '../actions/tasks'
-import { laodGoogleClientAsync } from '../actions/google'
 import TaskList from '../components/TaskList'
 
 
@@ -10,7 +9,6 @@ class VisibleTaskList extends Component {
   constructor(props) {
     super(props)
     this.dispatch = this.props.dispatch;
-    this.dispatch(laodGoogleClientAsync())
   }
 
   taskChange(id, prop, value) {
