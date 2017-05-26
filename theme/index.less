@@ -12,17 +12,17 @@
     text-align: center;
 
     .loader {
-        position: absolute;
-        top: 50%;
         border: 7px solid #f3f3f3; /* Light grey */
         border-top: 7px solid #337ab7; /* Blue */
         border-radius: 50%;
         width: 50px;
         height: 50px;
-        margin: 2px;
+        margin: -25px 0 0 -25px;
         overflow: visible;
         display: inline-block;
-        float: right;
+        position: absolute;
+        top: 50%;
+        left: 50%;
         animation: spin 2s linear infinite;
     }
 
@@ -49,6 +49,17 @@
         padding: 15px;
         display: block;
      }
+
+    //  @media (max-width: 768px) {
+    //     position: fixed;
+    //     overflow: scroll;
+    //     z-index: 9999999998;
+    //     height: 100%;
+    //     width: 100%;
+    //     opacity: 60%;
+    //     padding: 15px;
+    //     display: block;
+    //  }
      
     .filter {
         cursor: pointer;
@@ -198,6 +209,27 @@
             .task {
                 border-radius: 3px;
                 padding: 3px;
+                overflow: hidden;
+                .minidatepicker {
+                    width: 16px;
+                    height: 16px;
+                    margin: 2px;
+                    border: 1px solid #c1c1c1;
+                    border-top-width: 3px;
+                    overflow: visible;
+                    display: inline-block;
+                    float: right;
+                    text-align: center;
+                    font-size: 0.6em;
+                    color: #c1c1c1;
+                    @media (max-width: 768px) {
+                        -webkit-appearance: textfield;
+                        -moz-appearance: textfield;
+                        display:flex;
+                        display:-webkit-flex;
+                        color: #fff;
+                    }
+                }
             }
             .completed {
                 border: 1px solid #f7f7f7;
@@ -219,6 +251,9 @@
                 display: inline-block;
                 float: right;
                 animation: spin 2s linear infinite;
+            }
+            .hiddenloader{
+                visibility: hidden;
             }
 
             @keyframes spin {

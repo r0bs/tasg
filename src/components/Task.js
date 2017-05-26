@@ -1,6 +1,8 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import { RIEInput } from 'riek'
+import moment from 'moment';
+import Flatpickr from 'react-flatpickr'
 
 class Task extends Component {
 
@@ -23,6 +25,7 @@ class Task extends Component {
   }
 
   dateChange(date) {
+    console.log(date)
     this.props.taskChange(this.props.id, "due", date)
   }
 
@@ -46,9 +49,6 @@ class Task extends Component {
           }
         }
         >
-        <div className={
-          syncInProgress ? "loader": "hide"
-        }/>
         <input type="checkbox"
           checked={status === "completed" ? "checked" : ""}
           onChange={this.checked.bind(this)}
@@ -69,7 +69,17 @@ class Task extends Component {
               propName="value"
             />
         </span>
-        
+        <div className={
+          syncInProgress ? "loader": "hiddenloader loader"
+        }/>
+        <Flatpickr 
+          onChange={(date) => this.dateChange(moment(date[0].toISOString()))} 
+          className="minidatepicker"
+          options={{
+              defaultDate: this.props.due,
+              dateFormat: "d"
+          }}
+          />      
       </li>
     )
   }
@@ -77,7 +87,10 @@ class Task extends Component {
 
 Task.propTypes = {
   status: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired
+  title: PropTypes.string.isRequired,
+  due: PropTypes.string,
+  id: PropTypes.string.isRequired,
+  syncInProgress: PropTypes.bool
 }
 
 export default Task
