@@ -14,7 +14,9 @@ export default class TaskListsList extends Component {
                 {
                     this.props.tasklists.map((list) => {
                         return (
-                            <li style={{ cursor: "pointer" }}
+                            <li style={{ 
+                                cursor: "pointer",
+                                fontWeight: list.default ? "bold" : "" }}
                                 key={list.id}
                                 onClick={this.handleSelect.bind(this, list.id)}>
                                 {list.title}
