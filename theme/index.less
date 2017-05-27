@@ -35,6 +35,7 @@
 
 
 
+
 .sidebar {
     text-align: left;
     background-color: #e6e6e6;
@@ -49,17 +50,6 @@
         padding: 15px;
         display: block;
      }
-
-    //  @media (max-width: 768px) {
-    //     position: fixed;
-    //     overflow: scroll;
-    //     z-index: 9999999998;
-    //     height: 100%;
-    //     width: 100%;
-    //     opacity: 60%;
-    //     padding: 15px;
-    //     display: block;
-    //  }
      
     .filter {
         cursor: pointer;
@@ -89,6 +79,7 @@
         }
     }
 
+
     .add-list {
         position: absolute;
         text-align: center;
@@ -99,6 +90,19 @@
         
     }
 
+}
+
+.sidebar-mobile-visible {
+    @media (max-width: 768px) {
+        position: fixed;
+        overflow: scroll;
+        z-index: 9999999998;
+        height: 100%;
+        width: 80%;
+        opacity: 0.99;
+        padding: 15px;
+        display: block;
+    }
 }
 
 
@@ -137,6 +141,13 @@
                 height: 34px;
                 @media (max-width: 768px) {
                     padding: 10px;
+                }
+            }
+            .menutoggle {
+                display: none;
+                @media (max-width: 768px) {
+                    flex-grow: 2;
+                    display: inline-block;
                 }
             }
             .tasktitleinput {

@@ -22,7 +22,7 @@ class AppLoader extends Component {
         </div>
       )
     } else {
-      return <App />
+      return <App menuToggled={this.props.menuToggled} />
     }
     
   }
@@ -32,7 +32,8 @@ class AppLoader extends Component {
 const mapStateToProps = (state) => ({
   initialLoginStatusChecked: state.server.loginStatus.initialLoginStatusChecked,
   isLoggedIn: state.server.loginStatus.isLoggedIn,
-  hasFetchedOnce: state.server.hasFetchedOnce
+  hasFetchedOnce: state.server.hasFetchedOnce,
+  menuToggled: state.menuToggled
 })
 
 export default connect(mapStateToProps,null)(AppLoader)

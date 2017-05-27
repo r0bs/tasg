@@ -73,9 +73,10 @@ const tasks = (state = [], action) => {
         task(t, action)
       )
     case RECEIVE_TASKS:
+      const tasks = typeof action.tasks !== "undefined" ? action.tasks : []
       return [
         ...state,
-        ...action.tasks
+        ...tasks
       ]
     default:
       return state

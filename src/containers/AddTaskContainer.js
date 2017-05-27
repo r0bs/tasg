@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { addTask } from '../actions/tasks'
+import { toggleMenu } from '../actions/navigation'
 import AddTask from '../components/AddTask'
 
 class AddTaskContainer extends Component{
@@ -14,10 +15,14 @@ class AddTaskContainer extends Component{
     this.props.dispatch(addTask(title, date))
   }
 
+  toggleMenu() {
+    this.props.dispatch(toggleMenu())
+  }
+
   render() {
     return (
       <div>
-        <AddTask submitTask={this.submitTask.bind(this)} />
+        <AddTask submitTask={this.submitTask.bind(this)} toggleMenu={this.toggleMenu.bind(this)} />
       </div>
     )
   }

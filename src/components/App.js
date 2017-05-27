@@ -5,17 +5,18 @@ import AddTaskContainer from '../containers/AddTaskContainer'
 import VisibleTaskList from '../containers/VisibleTaskList'
 import VisibleLoginButton from '../containers/VisibleLoginButton'
 import Tasklists from '../containers/Tasklists'
+import Sidebar from '../components/Sidebar'
 
-const App = () => (
+const App = (props) => (
   <div className="container-fluid">
     <div className="row">
     
-      <div className="sidebar">
+      <Sidebar menuToggled={props.menuToggled}>
         <VisibleLoginButton />
         <Filter />
         <Search />
         <Tasklists />
-      </div>
+      </Sidebar>
 
       <div className="main">
         <AddTaskContainer />
