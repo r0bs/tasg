@@ -6,7 +6,7 @@ import TaskContainer from '../containers/TaskContainer'
 import LoginButtonContainer from '../containers/LoginButtonContainer'
 import Tasklists from '../containers/Tasklists'
 import Sidebar from '../components/Sidebar'
-import BottomMenuItem from '../components/BottomMenuItem'
+//import BottomMenuItem from '../components/BottomMenuItem'
 
 export default class App extends Component {
 
@@ -32,12 +32,7 @@ export default class App extends Component {
           <AddTaskContainer />
           <TaskContainer />
 
-          <div className="bottom-menu">
-            <BottomMenuItem />
-            <BottomMenuItem />
-            <BottomMenuItem />
-            <BottomMenuItem />
-          </div>
+          
 
         </div>
       </div>
@@ -45,3 +40,11 @@ export default class App extends Component {
   }
   
 }
+
+
+// <div className="bottom-menu">
+//             <BottomMenuItem />
+//             <BottomMenuItem />
+//             <BottomMenuItem />
+//             <BottomMenuItem />
+//           </div>

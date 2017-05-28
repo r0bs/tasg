@@ -1,30 +1,37 @@
 import React from 'react'
+import ReactDOM from 'react-dom';
 import thunkMiddleware from 'redux-thunk'
 import { createLogger } from 'redux-logger'
-import { render } from 'react-dom'
 import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
 import AppLoader from './containers/AppLoader'
 import reducer from './reducers'
+import registerServiceWorker from './registerServiceWorker'
+
 
 import 'taskinator-theme/build/index.css'
 
-const loggerMiddleware = createLogger();
+const loggerMiddleware = createLogger()
+
+let middleware = [thunkMiddleware]
+
+if(process.env.NODE_ENV !== 'production') {
+  middleware = [...middleware, loggerMiddleware]
+}
 
 const store = createStore(
   reducer,
   applyMiddleware(
-    thunkMiddleware,
-    loggerMiddleware
+    ...middleware
   )
 )
 
-render(
+ReactDOM.render(
   <Provider store={store}>
     <AppLoader />
   </Provider>, 
   document.getElementById('root')
 )
 
-
+registerServiceWorker()
 

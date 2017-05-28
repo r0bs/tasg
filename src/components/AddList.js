@@ -22,8 +22,8 @@ export default class AddList extends Component {
                             className="form-control"
                             placeholder="New List Title"
                             ref={node => {
-                            this.input = node
-                        }} />
+                                this.input = node
+                            }} />
                         <span className="input-group-btn">
                             <button className="btn btn-default" type="submit">
                                 <span className="glyphicon glyphicon-plus"></span>
