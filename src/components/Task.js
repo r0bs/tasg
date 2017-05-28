@@ -9,9 +9,7 @@ import 'element.scrollintoviewifneeded-polyfill'
 class Task extends Component {
 
   componentDidMount() {
-    // check if element is newly created
     if(this.props.syncInProgress) {
-      // only then scroll it into view
         this.li.scrollIntoViewIfNeeded()
     }
   }
@@ -43,6 +41,7 @@ class Task extends Component {
         ref={node => this.li = node } 
         style={{
           listStyleType: 'none',
+          animation: syncInProgress ? "highlight 0.5s 1" : ""
         }}
         className={
           status !== "needsAction" ? "task completed": "task todo"
