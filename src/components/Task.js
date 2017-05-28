@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { RIEInput } from 'riek'
 import moment from 'moment';
 import Flatpickr from 'react-flatpickr'
+import TaskCheckBox from './TaskCheckBox'
 import 'element.scrollintoviewifneeded-polyfill'
 
 class Task extends Component {
@@ -13,6 +14,10 @@ class Task extends Component {
       // only then scroll it into view
         this.li.scrollIntoViewIfNeeded()
     }
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    return JSON.stringify(nextProps) !== JSON.stringify(this.props)
   }
 
   titleChange(newTitle) {
@@ -31,7 +36,6 @@ class Task extends Component {
   }
 
   render() {
-
     const {status, syncInProgress, title, due, id} = this.props;
 
     return(
@@ -50,15 +54,7 @@ class Task extends Component {
           }
         }
         >
-        <input type="checkbox"
-          checked={status === "completed" ? "checked" : ""}
-          onChange={this.checked.bind(this)}
-          className={syncInProgress ? "syncInProgress" : ""}
-          style={{
-            margin: "3px",
-            marginRight: "7px"
-          }}
-        />
+        <TaskCheckBox status={status} check={this.checked.bind(this)} />
         <span 
           style={{
             color: status !== "needsAction"  ? "grey" : "black"

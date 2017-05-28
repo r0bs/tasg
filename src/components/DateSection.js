@@ -16,6 +16,10 @@ class DateSection extends Component {
         }
     }
 
+    shouldComponentUpdate(nextProps, nextState) {
+        return JSON.stringify(nextProps.tasks) !== JSON.stringify(this.props.tasks)
+    }
+
     makeMoment(date) {
         return moment(date, moment.ISO_8601).calendar(null, {
             sameDay: '[Today]',
@@ -65,6 +69,3 @@ class DateSection extends Component {
 
 }
 export default DateSection;
-
-
-//            <h3 className="Date">{this.props.date == null ? "No Due Date" : this.makeMoment(this.props.date)}</h3>
