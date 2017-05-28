@@ -28,7 +28,7 @@ class AddTask extends Component {
 
     handleDateChange(date) {
         this.setState({
-            date: moment(date[0].toISOString())
+            date: moment(date.toISOString())
         });
     }
 

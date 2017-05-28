@@ -56,7 +56,7 @@ class Task extends Component {
         <TaskCheckBox status={status} check={this.checked.bind(this)} />
         <span 
           style={{
-            color: status !== "needsAction"  ? "grey" : "black"
+            color: status !== "needsAction" ? "grey" : "black"
           }}>  
           
             <RIEInput
@@ -69,7 +69,7 @@ class Task extends Component {
           syncInProgress ? "loader": "hiddenloader loader"
         }/>
         <Flatpickr 
-          onChange={(date) => this.dateChange(moment(date[0].toISOString()))} 
+          onChange={(date) => this.dateChange(moment(date.toISOString()))} 
           className="minidatepicker"
           options={{
               defaultDate: this.props.due,
