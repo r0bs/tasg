@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { changeTask } from '../actions/tasks'
-import TaskList from '../components/TaskList'
+import Tasks from '../components/Tasks'
 
 
-class VisibleTaskList extends Component {
+class TaskContainer extends Component {
 
   constructor(props) {
     super(props)
@@ -18,7 +18,7 @@ class VisibleTaskList extends Component {
   render() {
     const {tasks, server, searchterm} = this.props;
     return (
-        <TaskList tasks={tasks} searchterm={searchterm} isFetching={server.isFetching}  taskChange={this.taskChange.bind(this)} />
+        <Tasks tasks={tasks} searchterm={searchterm} isFetching={server.isFetching}  taskChange={this.taskChange.bind(this)} />
     )
   }
 
@@ -51,4 +51,4 @@ const mapStateToProps = (state) => ({
 })
 
 
-export default connect(mapStateToProps)(VisibleTaskList)
+export default connect(mapStateToProps)(TaskContainer)

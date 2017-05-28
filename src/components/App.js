@@ -1,30 +1,47 @@
-import React from 'react'
+import React, {Component} from 'react'
 import Filter from './Filter'
 import Search from '../containers/Search'
 import AddTaskContainer from '../containers/AddTaskContainer'
-import VisibleTaskList from '../containers/VisibleTaskList'
-import VisibleLoginButton from '../containers/VisibleLoginButton'
+import TaskContainer from '../containers/TaskContainer'
+import LoginButtonContainer from '../containers/LoginButtonContainer'
 import Tasklists from '../containers/Tasklists'
 import Sidebar from '../components/Sidebar'
+import BottomMenuItem from '../components/BottomMenuItem'
 
-const App = (props) => (
-  <div className="container-fluid">
-    <div className="row">
-    
-      <Sidebar menuToggled={props.menuToggled}>
-        <VisibleLoginButton />
-        <Filter />
-        <Search />
-        <Tasklists />
-      </Sidebar>
+export default class App extends Component {
 
-      <div className="main">
-        <AddTaskContainer />
-        <VisibleTaskList />
+  componentDidMount() {
+    const el = document.getElementById('appload')
+    if(el) {
+      el.classList.add('hide')
+    }
+  }
+
+  render() {
+    return (
+      <div className="container-fluid">
+        <div className="row">
+        
+          <Sidebar>
+            <LoginButtonContainer />
+            <Filter />
+            <Search />
+            <Tasklists />
+          </Sidebar>
+
+          <AddTaskContainer />
+          <TaskContainer />
+
+          <div className="bottom-menu">
+            <BottomMenuItem />
+            <BottomMenuItem />
+            <BottomMenuItem />
+            <BottomMenuItem />
+          </div>
+
+        </div>
       </div>
-
-    </div>
-  </div>
-)
-
-export default App
+    )
+  }
+  
+}

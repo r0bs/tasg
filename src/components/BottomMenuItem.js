@@ -1,31 +1,27 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const Link = ({ active, children, onClick }) => {
-  if (active) {
-    return (
-      <span className="label label-primary filter-active">
-        {children}
-      </span>
-    )
-  }
+const BottomMenuItem = ({ active, children, onClick }) => {
+
 
   return (
-    <span className="label label-default filter"
+    <div className={
+      active ? "bottom-menu-item" : "bottom-menu-item active"
+    }
        onClick={e => {
          e.preventDefault()
          onClick()
        }}
       >
       {children}
-    </span>
+    </div>
   )
 }
 
-Link.propTypes = {
+BottomMenuItem.propTypes = {
   active: PropTypes.bool.isRequired,
   children: PropTypes.node.isRequired,
   onClick: PropTypes.func.isRequired
 }
 
-export default Link
+export default BottomMenuItem

@@ -4,37 +4,6 @@
 @icon-font-path: "../node_modules/bootstrap/fonts/";
 // customizations
 
-.appload {
-    box-sizing: border-box;
-    height: 100%;
-    width: 100%;
-    z-index: 9999999999;
-    text-align: center;
-
-    .loader {
-        border: 7px solid #f3f3f3; /* Light grey */
-        border-top: 7px solid #337ab7; /* Blue */
-        border-radius: 50%;
-        width: 50px;
-        height: 50px;
-        margin: -25px 0 0 -25px;
-        overflow: visible;
-        display: inline-block;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        animation: spin 2s linear infinite;
-    }
-
-    @keyframes spin {
-        0% { transform: rotate(0deg); }
-        100% { transform: rotate(360deg); }
-    }
-}
-
-
-
-
 
 .sidebar {
     text-align: left;
@@ -106,72 +75,72 @@
 }
 
 
-.main {
-    background-color: #fff;
-    width: 100%;
+.addTask {
     box-sizing: border-box;
     @media (min-width: 768px) {
         margin-left: 260px;
-        width: ~"calc(100% - 260px)";
-     }
+    }
+    padding: 10px 20px;
+    position: fixed;
+    overflow: hidden;
+    background-color: #fff;
+    opacity: 0.95;
+    border-radius: 4px;
+    width: ~"calc(100% - 260px)";
+    @media (max-width: 768px) {
+        padding: 10px;
+        width: 100%;
+    }
 
-    .addTask {
-        text-align: center;
-        padding: 10px 40px;
-        position: sticky;
-        position: fixed;
-        overflow: hidden;
+    .form-inline {
+        display: flex;
         background-color: #fff;
-        opacity: 0.95;
-        border-radius: 4px;
-        width: ~"calc(100% - 260px)";
-        @media (max-width: 768px) {
-            padding: 10px;
-            width: 100%;
-        }
-
-        .form-inline {
-            display: flex;
+        input, input:read-only, button, span.input-group {
+            border-radius: 4px;
+            margin: 0 2px 0 0;
+            opacity: 1;
             background-color: #fff;
-            input, input:read-only, button, span.input-group {
-                border-radius: 4px;
-                margin: 0 2px 0 0;
-                opacity: 1;
-                background-color: #fff;
-                height: 34px;
-                @media (max-width: 768px) {
-                    padding: 10px;
-                }
+            height: 34px;
+            @media (max-width: 768px) {
+                padding: 10px;
             }
-            .menutoggle {
-                display: none;
-                @media (max-width: 768px) {
-                    flex-grow: 2;
-                    display: inline-block;
-                }
-            }
-            .tasktitleinput {
-                flex-grow: 8;
-            }
-            .flatpickr-input {
-                flex-grow: 3;
-            }
-            button {
+        }
+        .menutoggle {
+            display: none;
+            @media (max-width: 768px) {
                 flex-grow: 2;
+                display: inline-block;
             }
-            input[type="date"]{
-                -webkit-appearance: textfield;
-                -moz-appearance: textfield;
-                display:flex;
-                display:-webkit-flex;
-            }
-            
+        }
+        .tasktitleinput {
+            flex-grow: 8;
+        }
+        .flatpickr-input {
+            flex-grow: 3;
+        }
+        button {
+            flex-grow: 2;
+        }
+        input[type="date"]{
+            -webkit-appearance: textfield;
+            -moz-appearance: textfield;
+            display:flex;
+            display:-webkit-flex;
         }
         
     }
+    
+}
 
     .tasklist {
         padding-top: 50px;
+        background-color: #fff;
+        width: 100%;
+        box-sizing: border-box;
+        @media (min-width: 768px) {
+            margin-left: 260px;
+            width: ~"calc(100% - 260px)";
+        }
 
          .datearea {
             width: 100%;
@@ -189,7 +158,7 @@
             }
 
             .date {
-                width: ~"calc(100% - 100px)";
+                width: ~"calc(100% - 60px)";
                 display: inline-block;
                 color: #c1c1c1;
                 border-top: 1.5px solid #c1c1c1;
@@ -209,13 +178,18 @@
         }
 
         ul {
-            @media (max-width: 768px) {
-                    padding: 10px;
-                }  
-            ul {  
-            }        
+            box-sizing: border-box;
+            padding: 0;
+            margin: 10px;
+            @media (min-width: 768px) {
+                margin: 20px;
+            }
+            
             li {
-                width: 90%;
+                box-sizing: border-box;
+                width: 100%;
+                padding: 10px;
+                
             }
             .task {
                 border-radius: 3px;
@@ -272,7 +246,28 @@
                 100% { transform: rotate(360deg); }
             }
         }
+        }
 
+
+.bottom-menu {
+    display: none;
+    @media (max-width: 768px) {
+        width: 100%;
+        position: fixed;
+        bottom: 0;
+        overflow: hidden;
+        background-color: yellow;
+        display: flex;
+        padding: 5px;
     }
-}
 
+    .bottom-menu-item {
+        text-align: center;
+        flex-grow: 1;
+        background-color: mediumseagreen;
+        height: 2em;
+        margin: 5px;
+        display: inline-block;
+    }
+    
+}

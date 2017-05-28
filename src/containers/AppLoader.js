@@ -13,27 +13,19 @@ class AppLoader extends Component {
 
   render() {
 
-    if( !this.props.initialLoginStatusChecked || 
-        (this.props.isLoggedIn && !this.props.hasFetchedOnce) 
-      ) {
-      return(
-        <div className="appload">
-          <div className="loader" />
-        </div>
-      )
+    if( !this.props.initialLoginStatusChecked || (this.props.isLoggedIn && !this.props.hasFetchedOnce) ) {
+      return <span />
     } else {
-      return <App menuToggled={this.props.menuToggled} />
+      return <App />
     }
     
   }
-
 }
 
 const mapStateToProps = (state) => ({
   initialLoginStatusChecked: state.server.loginStatus.initialLoginStatusChecked,
   isLoggedIn: state.server.loginStatus.isLoggedIn,
-  hasFetchedOnce: state.server.hasFetchedOnce,
-  menuToggled: state.menuToggled
+  hasFetchedOnce: state.server.hasFetchedOnce
 })
 
 export default connect(mapStateToProps,null)(AppLoader)
