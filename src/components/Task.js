@@ -8,9 +8,20 @@ import 'element.scrollintoviewifneeded-polyfill'
 
 class Task extends Component {
 
+  constructor() {
+    super()
+    this.isNew = false
+  }
+
   componentDidMount() {
     if(this.props.syncInProgress) {
         this.li.scrollIntoViewIfNeeded()
+    }
+  }
+
+  componentWillMount() {
+    if(this.props.syncInProgress) {
+        this.isNew = true
     }
   }
 
@@ -41,7 +52,7 @@ class Task extends Component {
         ref={node => this.li = node } 
         style={{
           listStyleType: 'none',
-          animation: syncInProgress ? "highlight 0.5s 1" : ""
+          animation: this.isNew ? "highlight 1s 1" : ""
         }}
         className={
           status !== "needsAction" ? "task completed": "task todo"
