@@ -5,7 +5,8 @@ import AddTaskContainer from '../containers/AddTaskContainer'
 import TaskContainer from '../containers/TaskContainer'
 import LoginButtonContainer from '../containers/LoginButtonContainer'
 import Tasklists from '../containers/Tasklists'
-import Sidebar from '../components/Sidebar'
+import MobileTopbar from './MobileTopbar'
+import Sidebar from './Sidebar'
 //import BottomMenuItem from '../components/BottomMenuItem'
 
 export default class App extends Component {
@@ -28,6 +29,8 @@ export default class App extends Component {
             <Search />
             <Tasklists />
           </Sidebar>
+          
+          <MobileTopbar />
 
           <AddTaskContainer />
           <TaskContainer />

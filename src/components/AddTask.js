@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import moment from 'moment';
 import Flatpickr from 'react-flatpickr'
 
-import 'taskinator-theme/flatpickr.min.css'
+import 'tasg-theme/flatpickr.min.css'
 
 class AddTask extends Component {
 
@@ -28,7 +28,7 @@ class AddTask extends Component {
 
     handleDateChange(date) {
         this.setState({
-            date: moment(date.toISOString())
+            date: moment(date[0].toISOString())
         });
     }
 
@@ -51,7 +51,8 @@ class AddTask extends Component {
                         }}
                         />
                     <button type="submit" className="btn btn-default">
-                        <span className="glyphicon glyphicon-plus"></span>
+                        <span className="visible-lg">Add Task</span>
+                        <span className="glyphicon glyphicon-plus hidden-lg"></span>
                     </button>
                 </form>
             </div>

@@ -64,23 +64,26 @@ class Task extends Component {
           }
         }
         >
-        <TaskCheckBox status={status} check={this.checked.bind(this)} />
-        <span 
-          style={{
-            color: status !== "needsAction" ? "grey" : "black"
-          }}>  
-          
-            <RIEInput
-              value={title}
-              change={this.titleChange.bind(this)}
-              propName="value"
-            />
-        </span>
+        <div className="task-title">
+          <TaskCheckBox status={status} check={this.checked.bind(this)} />
+          <span 
+            className="task-title"
+            style={{
+              color: status !== "needsAction" ? "grey" : "black"
+            }}>  
+            
+              <RIEInput
+                value={title}
+                change={this.titleChange.bind(this)}
+                propName="value"
+              />
+          </span>
+        </div>
         <div className={
           syncInProgress ? "loader": "hiddenloader loader"
         }/>
         <Flatpickr 
-          onChange={(date) => this.dateChange(moment(date.toISOString()))} 
+          onChange={(date) => this.dateChange(moment(date[0].toISOString()))} 
           className="minidatepicker"
           options={{
               defaultDate: this.props.due,

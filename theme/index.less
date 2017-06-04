@@ -5,12 +5,26 @@
 // customizations
 
 
+.mobile-topbar {
+    @media (min-width: 768px) {
+       display: none;
+     }
+    display: block;
+    height: 46px;
+    width: 100%;
+    position: fixed;
+    background-color: #eee;
+    opacity: 0.98;
+    padding-top: ~"calc(23px - 1.5rem)";
+}
+
+
 
 .sidebar {
     text-align: left;
     background-color: #e6e6e6;
-    display: none;
     box-sizing: border-box;
+    display: none;
 
      @media (min-width: 768px) {
         position: fixed;
@@ -116,6 +130,7 @@
     @media (max-width: 768px) {
         padding: 10px;
         width: 100%;
+        top: 46px;
     }
 
     .form-inline {
@@ -146,6 +161,9 @@
         }
         button {
             flex-grow: 2;
+            height: 34px;
+            padding: 6px;
+            text-align: center;
         }
         input[type="date"]{
             -webkit-appearance: textfield;
@@ -159,11 +177,12 @@
 }
 
     .tasklist {
-        padding-top: 50px;
+        padding-top: 70px;
         background-color: #fff;
         width: 100%;
         box-sizing: border-box;
         @media (min-width: 768px) {
+            padding-top: 30px;
             margin-left: 260px;
             width: ~"calc(100% - 260px)";
         }
@@ -221,6 +240,10 @@
                 border-radius: 3px;
                 padding: 3px;
                 overflow: hidden;
+                .task-title {
+                    display: inline-block;
+                    width: ~"calc(100% - 40px)";
+                }
                 .minidatepicker {
                     width: 16px;
                     height: 16px;

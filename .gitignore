@@ -8,6 +8,7 @@
 /coverage
 
 # production
+/production
 /build
 /theme/build
 

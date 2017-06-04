@@ -1,7 +1,7 @@
 {
-  "name": "taskinator-theme",
+  "name": "tasg-theme",
   "version": "1.0.0",
-  "description": "theme for taskinator",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "build": "lessc index.less build/index.css",

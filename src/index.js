@@ -9,7 +9,7 @@ import reducer from './reducers'
 import registerServiceWorker from './registerServiceWorker'
 
 
-import 'taskinator-theme/build/index.css'
+import 'tasg-theme/build/index.css'
 
 const loggerMiddleware = createLogger()
 
