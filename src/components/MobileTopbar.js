@@ -54,7 +54,7 @@ class MobileTopbar extends Component {
                                 }}>tas</span>
                             <span
                                 style={{
-                                    color: "#ff5252",
+                                    color: "#337ab7",
                                     fontWeight: "bold"
                                 }}>g</span>
                             <span

@@ -52,7 +52,7 @@ class AddTask extends Component {
                         />
                     <button type="submit" className="btn btn-default">
                         <span className="visible-lg">Add Task</span>
-                        <span className="glyphicon glyphicon-plus hidden-lg"></span>
+                        <span className="hidden-lg">Add</span>
                     </button>
                 </form>
             </div>
