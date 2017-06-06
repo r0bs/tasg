@@ -25,9 +25,13 @@ class TasksContainer extends Component {
 }
 
 const getSearchedTasks = function(tasks, searchterm) {
-  return tasks.filter(t => 
+  if(searchterm) {
+    return tasks.filter(t => 
        (t.title || t.description).toLowerCase().indexOf(searchterm.toLowerCase()) !== -1
-  )
+    )
+  } else {
+    return tasks;
+  }
 }
 
 const getStatusFilteredTasks = function(tasks, filter) {

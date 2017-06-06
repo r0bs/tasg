@@ -4,7 +4,9 @@ import { applySearch } from '../actions/filter'
 
 const mapDispatchToProps = (dispatch) => ({
   onInput: (searchterm) => {
-    dispatch(applySearch(searchterm))
+    if(searchterm.length > 1 | !searchterm) {
+      dispatch(applySearch(searchterm))
+    }
   }
 })
 

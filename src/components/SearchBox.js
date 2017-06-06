@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 const SearchBox = ({ onInput }) => {
   return (
-    <div>
+    <div className="searchbox">
       <form>
         <input
           className="form-control searchinput"

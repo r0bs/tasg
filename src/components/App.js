@@ -31,9 +31,7 @@ export default class App extends Component {
             <Tasklists />
           </Sidebar>
 
-          <MobileTopbar>
-            <AddTaskContainer />
-          </MobileTopbar>
+          <MobileTopbar />
 
           <AddTaskContainer />
           <TasksContainer />
