@@ -20,7 +20,7 @@ class MobileTopbar extends Component {
 
     render() {
 
-        let visibleItem = this.state.activeNav === "search" ? <Search /> : <AddTaskContainer />
+        let visibleItem = this.state.activeNav === "search" ? <Search displayAutoFocus="true" /> : <AddTaskContainer />
 
         return (
             <div className="mobile-topbar-wrapper">
