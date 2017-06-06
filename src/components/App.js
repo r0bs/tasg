@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import Filter from './Filter'
 import Search from '../containers/Search'
 import AddTaskContainer from '../containers/AddTaskContainer'
-import TaskContainer from '../containers/TaskContainer'
+import TasksContainer from '../containers/TasksContainer'
 import LoginButtonContainer from '../containers/LoginButtonContainer'
 import Tasklists from '../containers/Tasklists'
 import MobileTopbar from './MobileTopbar'
@@ -26,16 +26,17 @@ export default class App extends Component {
           <Sidebar>
             <LoginButtonContainer />
             <Filter />
+            <h4><span className="glyphicon glyphicon-search"></span>  Search</h4>
             <Search />
             <Tasklists />
           </Sidebar>
-          
-          <MobileTopbar />
+
+          <MobileTopbar>
+            <AddTaskContainer />
+          </MobileTopbar>
 
           <AddTaskContainer />
-          <TaskContainer />
-
-          
+          <TasksContainer />
 
         </div>
       </div>

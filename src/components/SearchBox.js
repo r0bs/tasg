@@ -4,7 +4,6 @@ import PropTypes from 'prop-types'
 const SearchBox = ({ onInput }) => {
   return (
     <div>
-      <h4><span className="glyphicon glyphicon-search"></span>  Search</h4>
       <form>
         <input
           className="form-control searchinput"

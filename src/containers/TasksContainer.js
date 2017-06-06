@@ -4,7 +4,7 @@ import { changeTask } from '../actions/tasks'
 import Tasks from '../components/Tasks'
 
 
-class TaskContainer extends Component {
+class TasksContainer extends Component {
 
   constructor(props) {
     super(props)
@@ -51,4 +51,4 @@ const mapStateToProps = (state) => ({
 })
 
 
-export default connect(mapStateToProps)(TaskContainer)
+export default connect(mapStateToProps)(TasksContainer)
