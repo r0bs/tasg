@@ -7,6 +7,7 @@ import LoginButtonContainer from '../containers/LoginButtonContainer'
 import Tasklists from '../containers/Tasklists'
 import MobileTopbar from './MobileTopbar'
 import Sidebar from './Sidebar'
+import Logo from './Logo'
 //import BottomMenuItem from '../components/BottomMenuItem'
 
 export default class App extends Component {
@@ -24,6 +25,7 @@ export default class App extends Component {
         <div className="row">
         
           <Sidebar>
+            <Logo />  
             <LoginButtonContainer />
             <Filter />
             <h4><span className="glyphicon glyphicon-search"></span>  Search</h4>

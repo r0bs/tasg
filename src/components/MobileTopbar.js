@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Search from '../containers/Search'
+import Logo from './Logo'
 import AddTaskContainer from '../containers/AddTaskContainer'
 
 class MobileTopbar extends Component {
@@ -37,33 +38,7 @@ class MobileTopbar extends Component {
                         onClick={() => this.handleNavClick("add")}>
                         <span className="glyphicon glyphicon-plus"></span>
                     </div>
-                    <div style={{
-                        textAlign: "center",
-                        marginBottom: "2rem"
-                    }}>
-                        <h1 style={{
-                            fontFamily: "'Megrim', cursive",
-                            marginTop: 0,
-                            fontSize: "3rem",
-                            margin: 0,
-                            color: "#000"
-                        }}>
-                            <span
-                                style={{
-                                    fontWeight: "bold"
-                                }}>tas</span>
-                            <span
-                                style={{
-                                    color: "#337ab7",
-                                    fontWeight: "bold"
-                                }}>g</span>
-                            <span
-                                style={{
-                                    fontWeight: "regular"
-                                }}>.one</span>
-                        </h1>
-
-                    </div>
+                    <Logo />
                 </div>
 
                 { visibleItem }
