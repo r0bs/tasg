@@ -19,6 +19,7 @@
     "react-dom": "^15.5.4",
     "react-flatpickr": "^3.4.0",
     "react-redux": "^5.0.4",
+    "react-scripts": "1.0.17",
     "redux": "^3.6.0",
     "redux-promise": "^0.5.3",
     "redux-thunk": "^2.2.0"

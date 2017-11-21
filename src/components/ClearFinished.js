@@ -1,7 +1,6 @@
 import { connect } from 'react-redux'
 import { clearFinishedTasks } from '../actions/tasks'
 import React from 'react'
-import PropTypes from 'prop-types'
 
 export const ClearButton = (props) => {
     return(
