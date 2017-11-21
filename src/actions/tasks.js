@@ -16,6 +16,8 @@ export const CHANGE_TASK = "CHANGE_TASK"
 export const PROCESS_TASK_CREATION_RESPONSE = "PROCESS_TASK_CREATION_RESPONSE"
 export const PROCESS_TASK_UPDATE_RESPONSE = "PROCESS_TASK_UPDATE_RESPONSE"
 
+export const REMOVE_FINISHED_TASKS = "REMOVE_FINISHED_TASKS"
+
 //GETTING
 
 export function requestTasks(listId) {
@@ -135,6 +137,21 @@ export function processTaskUpdateResponse(taskId, prop, value) {
   }
 }
 
+export const removeFinished = () => ({
+  type: REMOVE_FINISHED_TASKS
+})
+
+export function clearFinishedTasks(tasklist) {
+  return (dispatch, getState) => {
+    tasklist = !tasklist ? getState().tasklists.find(l => l.default).id : tasklist
+    
+    gapi.client.tasks.tasks.clear({
+      tasklist
+    })
+    .then( () => dispatch(removeFinished() ) )
+  }
+}
+
 //UPDATING ASYNC
 
 export function changeTask(taskId, prop, value, tasklist) {
@@ -149,7 +166,7 @@ export function changeTask(taskId, prop, value, tasklist) {
     //dispatch event to add flag for in edit
     dispatch(editTaskInList(taskId, prop, value))
 
-    // this is an ungly hack! checks wether user is signed in to google
+    // this is an ugly hack! checks wether user is signed in to google
     // if not, dispatches task update action as if server repsponded
     // and returns form the action creator
     if(!getState().server.loginStatus.isLoggedIn) {

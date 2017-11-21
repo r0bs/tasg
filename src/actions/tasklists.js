@@ -57,8 +57,9 @@ export function receiveTasklists(tasklists) {
   }
 }
 
+
 export function addTasklist(title) {
-  return(dispatch) => {
+  return (dispatch) => {
 
     const tempId = "NEWTASKLIST"+nextTaskListId++;
     
@@ -79,7 +80,7 @@ export function addTasklist(title) {
 }
 
 export function getTaskLists() {
-  return(dispatch) => {
+  return (dispatch) => {
 
     dispatch(requestTasklists())
 

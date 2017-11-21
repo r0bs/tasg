@@ -12,7 +12,6 @@ export const NOT_LOGGED_IN = "NOT_LOGGED_IN"
 export const LOGGED_OUT = "LOGGED_OUT"
 export const LOGIN_FAILED = "LOGIN_FAILED"
 
-
 export function loadGoogleClient() {
   return {
     type: LOAD_GOOGLE_CLIENT

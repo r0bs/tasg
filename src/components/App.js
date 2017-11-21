@@ -8,6 +8,7 @@ import Tasklists from '../containers/Tasklists'
 import MobileTopbar from './MobileTopbar'
 import Sidebar from './Sidebar'
 import Logo from './Logo'
+import ClearFinished from "./ClearFinished"
 //import BottomMenuItem from '../components/BottomMenuItem'
 
 export default class App extends Component {
@@ -30,6 +31,7 @@ export default class App extends Component {
             <Filter />
             <h4><span className="glyphicon glyphicon-search"></span>  Search</h4>
             <Search />
+            <ClearFinished />
             <Tasklists />
           </Sidebar>
 

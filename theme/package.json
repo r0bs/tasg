@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "lessc index.less build/index.css",
-    "start": "npm-watch"
+    "start": "watch"
   },
    "watch": {
     "build": "index.less"

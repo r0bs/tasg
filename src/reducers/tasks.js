@@ -4,7 +4,8 @@ import {
   RECEIVE_TASKS, 
   PROCESS_TASK_CREATION_RESPONSE, 
   PROCESS_TASK_UPDATE_RESPONSE,
-  CHANGE_TASK
+  CHANGE_TASK,
+  REMOVE_FINISHED_TASKS
  } from '../actions/tasks'
  import { LOGGED_OUT } from '../actions/google'
  import { SET_DEFAULT_LIST } from '../actions/tasklists'
@@ -72,8 +73,10 @@ const tasks = (state = [], action) => {
       return state.map(t =>
         task(t, action)
       )
+    case REMOVE_FINISHED_TASKS:
+      return state.filter(task => task.status !== "completed");
     case RECEIVE_TASKS:
-      const tasks = typeof action.tasks !== "undefined" ? action.tasks : []
+      const tasks = action.tasks ? action.tasks : [];
       return [
         ...state,
         ...tasks
