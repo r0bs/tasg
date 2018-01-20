@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "babel-polyfill": "^6.23.0",
-    "bootstrap": "^3.3.7",
+    "bootstrap": "^4.0.0",
     "element.scrollintoviewifneeded-polyfill": "^1.0.1",
     "moment": "^2.18.1",
     "prop-types": "^15.5.10",
