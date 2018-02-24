@@ -24,7 +24,7 @@ export default class App extends Component {
     return (
       <div className="container-fluid">
         <div className="row">
-        
+          <h1>test</h1>
           <Sidebar>
             <Logo />  
             <LoginButtonContainer />
@@ -46,11 +46,3 @@ export default class App extends Component {
   }
   
 }
-
-
-// <div className="bottom-menu">
-//             <BottomMenuItem />
-//             <BottomMenuItem />
-//             <BottomMenuItem />
-//             <BottomMenuItem />
-//           </div>
