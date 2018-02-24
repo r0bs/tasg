@@ -29,9 +29,9 @@ export const DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/tas
 export const SCOPES = 'https://www.googleapis.com/auth/tasks';
 ```
 
-### Run
+## Run
 
-This app is build with [create-react-app](https://github.com/facebook/create-react-app) and uses their local dev server. It can be started with:
+This app is build with [create-react-app](https://github.com/facebook/create-react-app) and uses it's local dev server. It can be started with:
 
 ```
 npm start
