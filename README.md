@@ -19,7 +19,7 @@ In order to save tasks to Google an API key needs to be created in the [Google A
 
 ```
 npm run setup:credentials
-´´´
+```
 
 and copy the client id into `src/gapi/credentials.js´:
 
@@ -27,7 +27,7 @@ and copy the client id into `src/gapi/credentials.js´:
 export const CLIENT_ID = '*7323423061610-1e8q74gh27885meb7cs234ojgbcu3u73.apps.googleusercontent.com*';
 export const DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/tasks/v1/rest"];
 export const SCOPES = 'https://www.googleapis.com/auth/tasks';
-´´´
+```
 
 ### Run
 
