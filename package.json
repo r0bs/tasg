@@ -25,7 +25,7 @@
   "scripts": {
     "start": "react-scripts start",
     "setup:theme": "npm i --prefix theme && npm run build --prefix theme && npm ln --prefix theme && npm link theme/",
-    "setup:credentials": "cp src/gapi/_credentials.js src/gapi/credentials.js",
+    "setup:credentials": "cp src/gapi/_credentials.json src/gapi/credentials.json",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",

@@ -1,6 +1,6 @@
 import {getTaskLists} from './tasklists'
 
-import {DISCOVERY_DOCS, CLIENT_ID, SCOPES} from '../gapi/credentials.js'
+import {DISCOVERY_DOCS, CLIENT_ID, SCOPES} from '../gapi/credentials.json'
 
 const gapi = window.gapi
 
