@@ -15,7 +15,7 @@ npm run setup:theme
 ```
 ### Configure
 
-In order to save tasks to Google an API key needs to be created in the [Google API Console](https://console.developers.google.com/apis). After creation, run:
+In order to save tasks to Google an API key needs to be created in the [Google API Console](https://console.developers.google.com/apis). After creation run:
 
 ```sh
 npm run setup:credentials
@@ -23,7 +23,7 @@ npm run setup:credentials
 
 and copy the client id into `src/gapi/credentials.json`. The file should look like this:
 
-```json
+```js
 {
     "CLIENT_ID": "73s324fs6067610-1e6q66ch255685meb7cs4679ojgbcu3u723.apps.googleusercontent.com",
     "DISCOVERY_DOCS": ["https://www.googleapis.com/discovery/v1/apis/tasks/v1/rest"],
