@@ -13,7 +13,7 @@
   "author": "r0bs",
   "license": "MIT",
   "dependencies": {
-    "bootstrap": "^3.3.7",
-    "less": "^2.7.2"
+    "bootstrap": "3.3.7",
+    "less": "3.0.1"
   }
 }

@@ -25,7 +25,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "link": "npm ln ./theme && npm link theme/",
+    "setup:theme": "npm i --prefix theme  && npm run build --prefix theme && npm ln --prefix theme && npm link theme/",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
