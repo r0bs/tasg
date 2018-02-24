@@ -1,69 +1,72 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <script src="https://apis.google.com/js/api.js"></script>
-    <link rel="shortcut icon" href="/favicon.ico?v=1">
-    <link href="https://fonts.googleapis.com/css?family=Allan|Londrina+Shadow|Maven+Pro:400,700|Megrim|Offside|Space+Mono:400,700" rel="stylesheet">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <script src="https://apis.google.com/js/api.js"></script>
+  <link rel="shortcut icon" href="/favicon.ico?v=1">
+  <link href="https://fonts.googleapis.com/css?family=Allan|Londrina+Shadow|Maven+Pro:400,700|Megrim|Offside|Space+Mono:400,700"
+    rel="stylesheet">
+  <title>tasg.one Task Manager</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
 
-    <!--
-      Notice the use of %PUBLIC_URL% in the tag above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
+    #appload {
+      box-sizing: border-box;
+      height: 100%;
+      width: 100%;
+      z-index: 9999999999;
+      text-align: center;
+    }
 
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
-    <title>tasg.one Task Manager</title>
-    <style>
-      * {
-        box-sizing: border-box;
+    #loader {
+      border: 7px solid #f3f3f3;
+      /* Light grey */
+      border-top: 7px solid #337ab7;
+      /* Blue */
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      margin: -25px 0 0 -25px;
+      overflow: visible;
+      display: inline-block;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      animation: spin 2s linear infinite;
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
       }
-      #appload {
-        box-sizing: border-box;
-        height: 100%;
-        width: 100%;
-        z-index: 9999999999;
-        text-align: center;
+      100% {
+        transform: rotate(360deg);
       }
-      #loader {
-          border: 7px solid #f3f3f3; /* Light grey */
-          border-top: 7px solid #337ab7; /* Blue */
-          border-radius: 50%;
-          width: 50px;
-          height: 50px;
-          margin: -25px 0 0 -25px;
-          overflow: visible;
-          display: inline-block;
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          animation: spin 2s linear infinite;
-      }
-      @keyframes spin {
-          0% { transform: rotate(0deg); }
-          100% { transform: rotate(360deg); }
-      }
-    </style>
-  </head>
-  <body>
+    }
+  </style>
+</head>
 
-    <div id="appload">
-      <div id="loader"></div>
-    </div>
-    
-    <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
+<body>
 
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
+  <div id="appload">
+    <div id="loader"></div>
+  </div>
 
-      To begin the development, run `npm start`.
-      To create a production bundle, use `npm run build`.
-    -->
-  </body>
+  <div id="root"></div>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-114681614-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-114681614-1');
+  </script>
+</body>
+
 </html>
