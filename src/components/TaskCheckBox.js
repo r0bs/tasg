@@ -35,7 +35,7 @@ export default class TaskCheckBox extends Component {
 
 }
 
-TaskCheckBox.PropTypes = {
+TaskCheckBox.propTypes = {
     status: PropTypes.string.isRequired,
     check: PropTypes.func.isRequired
 }

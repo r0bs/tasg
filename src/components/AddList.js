@@ -37,6 +37,6 @@ export default class AddList extends Component {
 
 }
 
-AddList.PropTypes = {
+AddList.propTypes = {
     addTasklist: PropTypes.func.isRequired
 }

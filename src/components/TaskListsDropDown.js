@@ -30,7 +30,7 @@ export default class TaskListsDropDown extends Component {
 
 }
 
-TaskListsDropDown.PropTypes = {
+TaskListsDropDown.propTypes = {
     selectDefaultList: PropTypes.func.isRequired,
     tasklists: PropTypes.arrayOf(PropTypes.shape({
         id: PropTypes.string.isRequired,

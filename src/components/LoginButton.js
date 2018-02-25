@@ -29,7 +29,7 @@ export default class LoginButton extends Component {
 
 }
 
-LoginButton.PropTypes = {
+LoginButton.propTypes = {
     isLoggedIn: PropTypes.bool.isRequired,
     login: PropTypes.func.isRequired
 }

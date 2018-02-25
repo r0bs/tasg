@@ -62,7 +62,7 @@ class AddTask extends Component {
 
 }
 
-AddTask.PropTypes = {
+AddTask.propTypes = {
     submitTask: PropTypes.func.isRequired
 }
 

@@ -79,6 +79,15 @@ export function addTasklist(title) {
   }
 }
 
+export function removeTasklist(taskListId) {
+  return (dispatch) => {
+    gapi.client.tasks.tasklists.delete({tasklist: taskListId})
+    .then(()=> {
+      dispatch(getTaskLists())
+    })
+  }
+}
+
 export function getTaskLists() {
   return (dispatch) => {
 
