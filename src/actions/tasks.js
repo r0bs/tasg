@@ -1,4 +1,5 @@
 import "babel-polyfill"
+import moment from "moment"
 
 const gapi = window.gapi
 
@@ -16,7 +17,9 @@ export const CHANGE_TASK = "CHANGE_TASK"
 export const PROCESS_TASK_CREATION_RESPONSE = "PROCESS_TASK_CREATION_RESPONSE"
 export const PROCESS_TASK_UPDATE_RESPONSE = "PROCESS_TASK_UPDATE_RESPONSE"
 
-export const REMOVE_FINISHED_TASKS = "REMOVE_FINISHED_TASKS"
+export const CLEAR_FINISHED_TASKS = "CLEAR_FINISHED_TASKS"
+
+export const UPDATE_OVERDUE_TASKS = "UPDATE_OVERDUE_TASKS"
 
 //GETTING
 
@@ -137,8 +140,8 @@ export function processTaskUpdateResponse(taskId, prop, value) {
   }
 }
 
-export const removeFinished = () => ({
-  type: REMOVE_FINISHED_TASKS
+export const clearFinished = () => ({
+  type: CLEAR_FINISHED_TASKS
 })
 
 export function clearFinishedTasks(tasklist) {
@@ -148,7 +151,23 @@ export function clearFinishedTasks(tasklist) {
     gapi.client.tasks.tasks.clear({
       tasklist
     })
-    .then( () => dispatch(removeFinished() ) )
+    .then( () => dispatch(clearFinished() ) )
+  }
+}
+
+export const updateOverdue = () => ({
+  type: UPDATE_OVERDUE_TASKS
+})
+
+export function updateOverdueTasks(tasks) {
+  return (dispatch, getState) => {
+
+    tasks.filter(task => {
+      return moment(task.due, moment.ISO_8601).isBefore(moment(), "d") 
+    }).map(task => {
+        return dispatch(changeTask(task.id, "due", moment()));
+    });
+    
   }
 }
 
@@ -159,6 +178,8 @@ export function changeTask(taskId, prop, value, tasklist) {
   return (dispatch, getState) => {
 
     tasklist = !tasklist ? getState().tasklists.find(l => l.default).id : tasklist
+
+    console.log("sdf",taskId);
 
     if(prop === "due") {
       value = value.format("YYYY-MM-DD") + "T00:00:00.000Z";

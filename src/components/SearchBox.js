@@ -5,6 +5,7 @@ const SearchBox = ({ onInput, displayAutoFocus }) => {
 
   return (
     <div className="searchbox">
+    <h4><span className="glyphicon glyphicon-search"></span>  Search</h4>
       <form>
         <input
           className="form-control searchinput"

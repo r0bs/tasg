@@ -56,6 +56,7 @@ TaskList.propTypes = {
   searchterm: PropTypes.string.isRequired,
   tasks: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.isRequired,
+    due: PropTypes.string.isRequired,
     status: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     syncInProgress: PropTypes.bool.isOptional

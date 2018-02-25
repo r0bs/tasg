@@ -9,6 +9,8 @@ import MobileTopbar from './MobileTopbar'
 import Sidebar from './Sidebar'
 import Logo from './Logo'
 import ClearFinished from "./ClearFinished"
+import UpdateOverdue from "./UpdateOverdue"
+import Actions from "./Actions"
 //import BottomMenuItem from '../components/BottomMenuItem'
 
 export default class App extends Component {
@@ -28,9 +30,11 @@ export default class App extends Component {
             <Logo />  
             <LoginButtonContainer />
             <Filter />
-            <h4><span className="glyphicon glyphicon-search"></span>  Search</h4>
             <Search />
-            <ClearFinished />
+            <Actions>
+              <ClearFinished />
+              <UpdateOverdue />
+            </Actions>     
             <Tasklists />
           </Sidebar>
 

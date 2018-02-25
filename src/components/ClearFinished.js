@@ -4,16 +4,13 @@ import React from 'react'
 
 export const ClearButton = (props) => {
     return(
-        <div className="clearFinished">
-            <button
-                type="button"
-                className="btn btn-outline-primary"
+        <div className="clearFinished inline">
+            <span className="label label-default filter"
                 onClick={() => props.dispatch(clearFinishedTasks())}>
                 Clear Finished
-            </button>
+            </span>
         </div>
     )
 }
-
 
 export default connect()(ClearButton)
