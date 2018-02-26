@@ -8,7 +8,7 @@ export default class TaskListsList extends Component {
     }
 
     removeTasklist(list) {
-        var listToDelete = prompt("Type name of list " + list.title + " to delete it");
+        var listToDelete = prompt("Type name of list \"" + list.title + "\" to delete it");
         if(listToDelete === list.title) {
             alert("List '" + list.title + "' deleted.")
             return this.props.removeTasklist(list.id)
@@ -35,7 +35,7 @@ export default class TaskListsList extends Component {
                                     cursor: "pointer"
                                 }}
                                 onClick={() => this.removeTasklist(list)}
-                                > (-)</span>
+                                >  (-)</span>
                             </li>
                         )
                     })
