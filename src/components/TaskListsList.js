@@ -8,7 +8,7 @@ export default class TaskListsList extends Component {
     }
 
     removeTasklist(list) {
-        var listToDelete = prompt("Enter name of list to delete it");
+        var listToDelete = prompt("Type name of list " + list.title + " to delete it");
         if(listToDelete === list.title) {
             alert("List '" + list.title + "' deleted.")
             return this.props.removeTasklist(list.id)
