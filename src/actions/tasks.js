@@ -163,6 +163,8 @@ export function updateOverdueTasks(tasks) {
   return (dispatch, getState) => {
 
     tasks.filter(task => {
+      return task.status === "needsAction";
+    }).filter(task => {
       return moment(task.due, moment.ISO_8601).isBefore(moment(), "d") 
     }).map(task => {
         return dispatch(changeTask(task.id, "due", moment()));
