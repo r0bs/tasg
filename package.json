@@ -20,7 +20,8 @@
     "react-scripts": "1.1.1",
     "redux": "^3.7.2",
     "redux-promise": "^0.5.3",
-    "redux-thunk": "^2.2.0"
+    "redux-thunk": "^2.2.0",
+    "snyk": "^1.316.1"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -30,6 +31,9 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "buildpush": "npm run build && git add build && git commit -m 'build push' && git push",
-    "deploy": "npm run buildpush && git subtree push --prefix build https://github.com/r0bs/r0bs.github.io.git master --squash"
-  }
+    "deploy": "npm run buildpush && git subtree push --prefix build https://github.com/r0bs/r0bs.github.io.git master --squash",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
+  },
+  "snyk": true
 }
