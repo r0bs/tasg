@@ -1,0 +1,19 @@
+{
+  "name": "tasg-theme",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "lessc index.less build/index.css",
+    "start": "watch"
+  },
+   "watch": {
+    "build": "index.less"
+  },
+  "author": "r0bs",
+  "license": "MIT",
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "less": "^3.0.1"
+  }
+}

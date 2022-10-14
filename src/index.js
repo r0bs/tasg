@@ -8,7 +8,7 @@ import AppLoader from './containers/AppLoader'
 import reducer from './reducers'
 import registerServiceWorker from './registerServiceWorker'
 
-import 'tasg-theme/build/index.css'
+import './theme/build/index.css'
 
 const loggerMiddleware = createLogger()
 

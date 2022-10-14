@@ -1,0 +1,382 @@
+// the main bootstrap file
+@import "./node_modules/bootstrap/less/bootstrap";
+// necessary to avoid compilation error
+@icon-font-path: "../node_modules/bootstrap/fonts/";
+// customizations
+
+.mobile-topbar-wrapper {
+    width: 100%;
+    height: auto;
+    overflow: hidden; 
+    @media (min-width: 768px) {
+        display: none;
+    }
+    @media (max-width: 768px) {
+        .addTask {
+            display: block;
+            padding: 10px;
+            width: 100%;
+            height: 46px;
+        }
+        .searchbox {
+            display: block;
+            padding: 10px 10px 20px 10px;
+            width: 100%;
+            height: 46px;
+            background-color: #fff;
+            opacity: 0.95;
+        }
+    }
+    display: block;
+    box-sizing: border-box;
+    position: fixed;
+    .mobile-header {
+        height: 46px;
+        width: 100%;
+        background-color: #eee;
+        opacity: 0.98;
+        padding-top: ~"calc(23px - 1.5rem)";
+        border-bottom: 1px solid #c1c1c1;
+        .mobile-topbar-button {
+            box-sizing: border-box;
+            text-align: center;
+            color: rgba(50, 50, 50, 0.74);
+            font-size: 2rem;
+            height: 38px;
+            padding: 5px 10px 0 10px;
+            margin: 0 10px 0 10px;
+            border-top: 1px solid #eee;
+            border-right: 1px solid #eee;
+            border-bottom: 0;
+            border-left: 1px solid #eee;
+        }
+        .mobile-search-button {
+            float: left;
+        }
+        .mobile-add-button {
+            float: right;
+        }
+        .active {
+            background-color: #fff;
+            color: #c1c1c1;
+            border-top-left-radius: 4px;
+            border-top-right-radius: 4px;
+            border-top: 1px solid #c1c1c1;
+            border-right: 1px solid #c1c1c1;
+            border-bottom: 0;
+            border-left: 1px solid #c1c1c1;
+        }
+    }
+}
+
+.sidebar {
+    text-align: left;
+    background-color: #e6e6e6;
+    box-sizing: border-box;
+    display: none;
+
+     @media (min-width: 768px) {
+        position: fixed;
+        overflow: scroll;
+        height: 100%;
+        width: 260px;
+        padding: 15px;
+        display: block;
+     }
+     
+    .filter {
+        cursor: pointer;
+    }
+
+    h4 {
+        margin-top: 30px;
+        color: #3d4248;
+    }
+    .searchinput {
+        text-align: center;
+        background-color: #eee;
+        ::-webkit-input-placeholder {
+            text-align: center;
+        }
+
+        :-moz-placeholder { /* Firefox 18- */
+            text-align: center;  
+        }
+
+        ::-moz-placeholder {  /* Firefox 19+ */
+            text-align: center;  
+        }
+
+        :-ms-input-placeholder {  
+            text-align: center; 
+        }
+    }
+
+    .clearFinished {
+        margin-top: 20px;
+    }
+
+    .add-list {
+        position: absolute;
+        text-align: center;
+        width: 100%;
+        padding: 15px;
+        bottom: 0;
+        left: 0;
+    }
+
+    .appload {
+    box-sizing: border-box;
+    height: 100%;
+    width: 100%;
+    z-index: 9999999999;
+    text-align: center;
+}
+.loader {
+    border: 7px solid #f3f3f3; /* Light grey */
+    border-top: 7px solid #337ab7; /* Blue */
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    margin: 25px 0 0 -25px;
+    overflow: visible;
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    animation: spin 2s linear infinite;
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+}
+
+.sidebar-mobile-visible {
+    @media (max-width: 768px) {
+        position: fixed;
+        overflow: scroll;
+        z-index: 9999999998;
+        height: 100%;
+        width: 80%;
+        opacity: 0.99;
+        padding: 15px;
+        display: block;
+    }
+}
+
+
+.addTask {
+    @media (max-width: 768px) {
+        display: none;
+    }
+    @media (min-width: 768px) {
+        margin-left: 260px;
+        display: block;
+        position: fixed;
+    }
+    box-sizing: border-box;
+    padding: 10px 20px;
+    background-color: #fff;
+    opacity: 0.95;
+    width: ~"calc(100% - 260px)";
+    .form-inline {
+        display: flex;
+        background-color: #fff;
+        input, input:read-only, button, span.input-group {
+            border-radius: 4px;
+            margin: 0 2px 0 0;
+            opacity: 1;
+            background-color: #fff;
+            height: 34px;
+            @media (max-width: 768px) {
+                padding: 10px;
+            }
+        }
+        .menutoggle {
+            display: none;
+            @media (max-width: 768px) {
+                flex-grow: 2;
+                display: inline-block;
+            }
+        }
+        .tasktitleinput {
+            flex-grow: 8;
+        }
+        .flatpickr-input {
+            flex-grow: 3;
+        }
+        button {
+            flex-grow: 2;
+            height: 34px;
+            padding: 6px;
+            text-align: center;
+        }
+        input[type="date"]{
+            -webkit-appearance: textfield;
+            -moz-appearance: textfield;
+            display:flex;
+            display:-webkit-flex;
+        }
+        
+    }
+    
+}
+
+    .tasklist {
+        padding-top: 100px;
+        background-color: #fff;
+        width: 100%;
+        box-sizing: border-box;
+        @media (min-width: 768px) {
+            padding-top: 30px;
+            margin-left: 260px;
+            width: ~"calc(100% - 260px)";
+        }
+
+         .datearea {
+            width: 100%;
+            padding-top: 0px;
+            margin-bottom: 20px;
+
+            .day {
+                display: inline-block;
+                margin: 0;
+                font-size: 2.1em;
+                font-weight: bold;
+                color: #2e2e2e;
+                text-align: right;
+                width: 50px;
+            }
+
+            .date {
+                width: ~"calc(100% - 60px)";
+                display: inline-block;
+                color: #c1c1c1;
+                border-top: 1.5px solid #c1c1c1;
+                font-weight: bold;
+                margin: 10px 0 0 10px;
+                font-size: 1.2em;
+            }
+
+            .today{
+                border-top: 1.5px solid #337ab7;
+                color: #337ab7;
+            }
+        }
+
+        .todo {
+            border: 1px solid #fcfcfc;
+        }
+
+        ul {
+            box-sizing: border-box;
+            padding: 0;
+            margin: 10px;
+            @media (min-width: 768px) {
+                margin: 20px;
+            }
+            
+            li {
+                box-sizing: border-box;
+                width: 100%;
+                padding: 10px;
+                
+            }
+            .task {
+                border-radius: 3px;
+                padding: 3px;
+                overflow: hidden;
+                .task-title {
+                    display: inline-block;
+                    width: ~"calc(100% - 40px)";
+                }
+                .minidatepicker {
+                    width: 16px;
+                    height: 16px;
+                    margin: 2px;
+                    border: 1px solid #c1c1c1;
+                    border-top-width: 3px;
+                    overflow: visible;
+                    display: inline-block;
+                    float: right;
+                    text-align: center;
+                    font-size: 0.6em;
+                    color: #c1c1c1;
+                    @media (max-width: 768px) {
+                        -webkit-appearance: none;
+                        -moz-appearance: none;
+                        overflow: visible;
+                        border-radius: 0;
+                        display:flex;
+                        display:-webkit-flex;
+                        color: #c1c1c1;
+                    }
+                }
+            }
+
+            .new {
+                animation: highlight 3s 1;
+            }
+
+            @keyframes highlight {
+                0% { background-color: #d0e2f2; }
+                100% { background-color: rgba(0,0,0,0); }
+            }
+
+            .completed {
+                border: 1px solid #f7f7f7;
+                background-color: #f9f9f9;
+            }
+
+            input.syncInProgress{
+                font-style: italic;
+            }
+
+            .loader {
+                border: 2px solid #f3f3f3; /* Light grey */
+                border-top: 2px solid #337ab7; /* Blue */
+                border-radius: 50%;
+                width: 16px;
+                height: 16px;
+                margin: 2px;
+                overflow: visible;
+                display: inline-block;
+                float: right;
+                animation: spin 2s linear infinite;
+            }
+            .hiddenloader{
+                visibility: hidden;
+            }
+
+            @keyframes spin {
+                0% { transform: rotate(0deg); }
+                100% { transform: rotate(360deg); }
+            }
+        }
+        }
+
+
+.bottom-menu {
+    display: none;
+    @media (max-width: 768px) {
+        width: 100%;
+        position: fixed;
+        bottom: 0;
+        overflow: hidden;
+        background-color: yellow;
+        display: flex;
+        padding: 5px;
+    }
+
+    .bottom-menu-item {
+        text-align: center;
+        flex-grow: 1;
+        background-color: mediumseagreen;
+        height: 2em;
+        margin: 5px;
+        display: inline-block;
+    }
+    
+}

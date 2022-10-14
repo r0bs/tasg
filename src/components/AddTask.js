@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import moment from 'moment';
 import Flatpickr from 'react-flatpickr'
 
-import 'tasg-theme/flatpickr.min.css'
+import './../theme/flatpickr.min.css'
 
 class AddTask extends Component {
 

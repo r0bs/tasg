@@ -40,6 +40,20 @@ export function receiveTasks(listId, tasks) {
 
 //GETTING ASYNC
 
+const getAllTasks = async (tasklist, items, nextPageToken) => {
+
+  const response = await gapi.client.tasks.tasks.list({
+    tasklist: tasklist,
+    pageToken: nextPageToken
+  });
+
+  if (response.result.nextPageToken) {
+    return getAllTasks(tasklist, response.result.items, response.result.nextPageToken)
+  }
+
+  return [...response.result.items, ...items]
+}
+
 export function getTasks(tasklist) {
     return (dispatch, getState) => {
 
@@ -47,11 +61,9 @@ export function getTasks(tasklist) {
 
       dispatch(requestTasks(tasklist))
 
-      gapi.client.tasks.tasks.list({
-        'tasklist': tasklist
-      }).then((response)=> {  
-        dispatch(receiveTasks(tasklist, JSON.parse(response.body).items))
-      })
+      getAllTasks(tasklist, []).then((items) => {
+        dispatch(receiveTasks(tasklist, items));
+      });
     }
 }
 
